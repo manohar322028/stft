@@ -5,10 +5,12 @@ import Dashboard from "./pages/Dashboard";
 import Notices from "./pages/Notices";
 import News from "./pages/News";
 import Downloads from "./pages/Downloads";
+import Header from "./components/Header";
 
 export default function App() {
   return (
     <BrowserRouter>
+      <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
