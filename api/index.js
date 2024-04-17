@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import authRoutes from "./routes/auth.route.js";
+import cors from "cors";
 dotenv.config();
 
 mongoose
@@ -16,6 +17,7 @@ mongoose
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 
 app.listen(3000, () => {
   console.log("Server is running on http://localhost:3000");

@@ -1,23 +1,39 @@
 import React, { useState } from "react";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { Alert, Spinner } from "flowbite-react";
+
 function LoginPage() {
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (event) => {
+  const apiURL = import.meta.env.VITE_API_URL;
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      user = fetch("/api/auth/login", {
+      setLoading(true);
+
+      await fetch(apiURL + "/api/auth/login", {
         method: "POST",
         body: JSON.stringify({ username, password }),
         headers: { "Content-Type": "application/json" },
-      });
-    } catch (err) {
-      console.error("Error logging in:", err);
-    }
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          if (res.success === false) {
+            setLoading(false);
+            return setErrorMessage(res.message);
+          }
+          setLoading(false);
 
-    if (user) {
-      return <Navigate to="/admindashboard" props={user} />;
+          navigate("/");
+        });
+    } catch (err) {
+      setErrorMessage(err.message);
+      setLoading(false);
     }
   };
 
@@ -60,11 +76,24 @@ function LoginPage() {
           </div>
           <button
             type="submit"
+            disabled={loading}
             className="w-full px-4 py-2 rounded-md bg-indigo-600 text-white font-medium hover:bg-indigo-500 focus:outline-none focus:ring-4 focus:ring-indigo-300"
           >
-            Login
+            {loading ? (
+              <>
+                <Spinner size="sm" />
+                <span className="ml-2">Loading...</span>
+              </>
+            ) : (
+              "Login"
+            )}
           </button>
         </form>
+        {errorMessage && (
+          <Alert color="failure" className="mt-4">
+            {errorMessage}
+          </Alert>
+        )}
       </div>
     </div>
   );

@@ -14,7 +14,7 @@ export default function Header() {
   return (
     <>
       <nav className="bg-red-700 text-white px-4 border-b border-gray-300 shadow-md h-16">
-        <div className="container mx-auto flex justify-between items-center h-full">
+        <div className="container mx-auto flex justify-between items-center h-full w-full max-w-7xl">
           <Link to="/" className="flex items-center justify-start h-full">
             <img src="logo.png" alt="Logo" className="w-12 h-12" />
             <span className="mx-2 text-2xl font-bold">NNTA Bagmati</span>
