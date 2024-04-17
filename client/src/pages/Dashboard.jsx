@@ -19,10 +19,12 @@ function Dashboard(props) {
         console.error("Error decoding token:", err);
       }
     }
-    if (!isAdmin) {
-      return navigate("/adminlogin");
-    }
+    
   }, []);
+
+  if (!isAdmin) {
+    return navigate("/adminlogin");
+  }
 
   return <div>Admin Dashboard, username: {props.user.username}</div>;
 }

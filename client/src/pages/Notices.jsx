@@ -1,5 +1,5 @@
 import React from "react";
 
 export default function Notices() {
-  return <div>Notices</div>;
+  return <div className="text-black">Notices</div>;
 }

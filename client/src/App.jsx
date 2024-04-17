@@ -7,20 +7,26 @@ import News from "./pages/News";
 import Downloads from "./pages/Downloads";
 import Header from "./components/Header";
 import Login from "./pages/Login";
+import Footer from "./components/Footer";
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/admindashboard" element={<Dashboard props />} />
-        <Route path="/notices" element={<Notices />} />
-        <Route path="/news" element={<News />} />
-        <Route path="/downloads" element={<Downloads />} />
-        <Route path="/adminlogin" element={<Login />} />
-      </Routes>
-    </BrowserRouter>
+    <div className="flex flex-col min-h-screen">
+      <BrowserRouter>
+        <Header />
+        <div className="flex-grow">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/admindashboard" element={<Dashboard props />} />
+            <Route path="/notices" element={<Notices />} />
+            <Route path="/news" element={<News />} />
+            <Route path="/downloads" element={<Downloads />} />
+            <Route path="/adminlogin" element={<Login />} />
+          </Routes>
+        </div>
+        <Footer />
+      </BrowserRouter>
+    </div>
   );
 }
