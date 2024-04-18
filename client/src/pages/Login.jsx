@@ -9,14 +9,12 @@ function LoginPage() {
   const [errorMessage, setErrorMessage] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const apiURL = import.meta.env.VITE_API_URL;
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       setLoading(true);
 
-      await fetch(apiURL + "/api/auth/login", {
+      await fetch("/api/auth/login", {
         method: "POST",
         body: JSON.stringify({ username, password }),
         headers: { "Content-Type": "application/json" },
