@@ -8,7 +8,10 @@ import * as AdminJSMongoose from "@adminjs/mongoose";
 import Connect from "connect-mongodb-session";
 import session from "express-session";
 import User from "./models/user.model.js";
+
 import bcryptjs from "bcryptjs";
+
+import adminOptions from "./admin.options.js";
 
 dotenv.config();
 
@@ -49,10 +52,6 @@ AdminJS.registerAdapter({
 const start = async () => {
   const app = express();
   app.use(express.json());
-
-  const adminOptions = {
-    databases: [database],
-  };
 
   const admin = new AdminJS(adminOptions);
   const ConnectSession = Connect(session);
