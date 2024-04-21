@@ -8,10 +8,15 @@ import * as AdminJSMongoose from "@adminjs/mongoose";
 import Connect from "connect-mongodb-session";
 import session from "express-session";
 import User from "./models/user.model.js";
+import path from "path";
 
 import bcryptjs from "bcryptjs";
 
 import adminOptions from "./admin.options.js";
+
+import * as url from "url";
+
+const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 
 dotenv.config();
 
@@ -29,17 +34,12 @@ mongoose
 
 const ADMIN_USER = await User.findOne({ type: "admin" });
 
-const ADMIN = {
-  username: ADMIN_USER.username,
-  password: ADMIN_USER.password,
-};
-
 const authenticate = async (email, password) => {
   if (
-    email === ADMIN.username &&
-    bcryptjs.compareSync(password, ADMIN.password)
+    email === ADMIN_USER.username &&
+    bcryptjs.compareSync(password, ADMIN_USER.password)
   ) {
-    return Promise.resolve(ADMIN);
+    return Promise.resolve(ADMIN_USER);
   }
   return null;
 };
@@ -52,6 +52,7 @@ AdminJS.registerAdapter({
 const start = async () => {
   const app = express();
   app.use(express.json());
+  app.use(express.static(path.join(__dirname, "../public")));
 
   const admin = new AdminJS(adminOptions);
   const ConnectSession = Connect(session);

@@ -1,8 +1,24 @@
 import News from "./models/news.model.js";
 import Notice from "./models/notice.model.js";
 import Download from "./models/download.model.js";
+import uploadFeature from "@adminjs/upload";
+import { ComponentLoader } from "adminjs";
+
+import { LocalProvider } from "./upload-provider.js";
+
+const componentLoader = new ComponentLoader();
+
+const providerOptions = {
+  bucket: "./public/files",
+  opts: {
+    baseUrl: "/files",
+  },
+};
+
+const localProvider = new LocalProvider(providerOptions);
 
 const adminOptions = {
+  componentLoader,
   branding: {
     companyName: "Admin Panel",
     softwareBrothers: false,
@@ -42,16 +58,38 @@ const adminOptions = {
             isVisible: { list: false, show: true, edit: false, filter: false },
           },
           image: {
-            isVisible: { list: false, show: true, edit: true, filter: false },
+            type: "string",
+            isVisible: { list: false, show: true, edit: false, filter: false },
           },
+          image_file: {
+            isVisible: { list: false, show: false, edit: true, filter: false },
+          },
+
           createdAt: {
-            isVisible: { list: true, show: true, edit: false, filter: false },
+            isVisible: { list: false, show: true, edit: false, filter: false },
           },
           updatedAt: {
             isVisible: { list: true, show: true, edit: false, filter: true },
           },
         },
       },
+      features: [
+        uploadFeature({
+          componentLoader: componentLoader,
+          provider: localProvider,
+          properties: {
+            key: "image",
+            bucket: "bucket",
+            file: "image_file",
+            filePath: "filePath",
+            filesToDelete: "filesToDelete",
+          },
+          validation: {
+            mimeTypes: ["image/png", "image/jpg", "image/jpeg"],
+          },
+          uploadPath: (record, filename) => `${record.id()}/${filename}`,
+        }),
+      ],
     },
     {
       resource: Notice,
