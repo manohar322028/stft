@@ -6,9 +6,9 @@ const noticeSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    file: {
+    pdf: {
+      default: "",
       type: String,
-      required: true,
     },
   },
 

@@ -58,11 +58,10 @@ const adminOptions = {
             isVisible: { list: false, show: true, edit: false, filter: false },
           },
           image: {
-            type: "string",
             isVisible: { list: false, show: true, edit: false, filter: false },
           },
           image_file: {
-            isVisible: { list: false, show: false, edit: true, filter: false },
+            isVisible: { list: true, show: true, edit: true, filter: false },
           },
 
           createdAt: {
@@ -87,7 +86,10 @@ const adminOptions = {
           validation: {
             mimeTypes: ["image/png", "image/jpg", "image/jpeg"],
           },
-          uploadPath: (record, filename) => `${record.id()}/${filename}`,
+          uploadPath: (record, filename) =>
+            `news/${record.title().split(" ").join("-")}.${filename
+              .split(".")
+              .pop()}`,
         }),
       ],
     },
@@ -95,27 +97,59 @@ const adminOptions = {
       resource: Notice,
       options: {
         properties: {
-          file: {
-            isVisible: { list: false, show: true, edit: true, filter: false },
+          _id: {
+            isVisible: { list: false, show: true, edit: false, filter: false },
+          },
+          pdf: {
+            isVisible: { list: false, show: true, edit: false, filter: false },
+          },
+          pdf_file: {
+            isVisible: { list: true, show: true, edit: true, filter: false },
           },
           createdAt: {
-            isVisible: { list: true, show: true, edit: false },
+            isVisible: { list: false, show: true, edit: false, filter: false },
           },
           updatedAt: {
-            isVisible: { list: true, show: true, edit: false },
+            isVisible: { list: true, show: true, edit: false, filter: true },
           },
         },
       },
+      features: [
+        uploadFeature({
+          componentLoader: componentLoader,
+          provider: localProvider,
+          properties: {
+            key: "pdf",
+            bucket: "bucket",
+            file: "pdf_file",
+            filePath: "filePath",
+            filesToDelete: "filesToDelete",
+          },
+          validation: {
+            mimeTypes: ["application/pdf"],
+          },
+          uploadPath: (record, filename) =>
+            `notices/${record.title().split(" ").join("-")}.${filename
+              .split(".")
+              .pop()}`,
+        }),
+      ],
     },
     {
       resource: Download,
       options: {
         properties: {
+          _id: {
+            isVisible: { list: false, show: true, edit: false, filter: false },
+          },
+          url: {
+            isVisible: { list: true, show: true, edit: true, filter: false },
+          },
           createdAt: {
-            isVisible: { list: false, show: true, edit: false },
+            isVisible: { list: false, show: true, edit: false, filter: false },
           },
           updatedAt: {
-            isVisible: { list: false, show: true, edit: false },
+            isVisible: { list: true, show: true, edit: false, filter: true },
           },
         },
       },
