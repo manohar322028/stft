@@ -22,7 +22,7 @@ export default function Hero() {
           <p className="mt-4 text-lg">Slogan Slogan Slogan Slogan</p>
         </div>
         <div className="text-left mt-4">
-          <button className="px-8 py-2 text-white bg-blue-500 rounded hover:bg-blue-600">
+          <button className="px-8 py-2 text-white bg-themeBlue rounded hover:bg-blue-700">
             Contact Us
           </button>
         </div>

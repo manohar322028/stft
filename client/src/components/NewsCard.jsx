@@ -17,7 +17,7 @@ export default function NewsCard({ image, title, content }) {
         <p className="text-gray-600 text-sm mb-4">{truncatedContent}</p>
 
         {/* Read More Button */}
-        <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+        <button className="px-4 py-2 bg-themeBlue text-white rounded hover:bg-blue-600">
           Read More
         </button>
       </div>
