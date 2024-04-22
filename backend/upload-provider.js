@@ -39,7 +39,7 @@ class LocalProvider extends BaseProvider {
 }
 
 const providerOptions = {
-  bucket: "./public/files",
+  bucket: "./client/public/files",
   opts: {
     baseUrl: "/files",
   },

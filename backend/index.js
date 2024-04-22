@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import authRoutes from "./routes/auth.route.js";
+import newsRoutes from "./routes/news.route.js";
 import AdminJS from "adminjs";
 import AdminJSExpress from "@adminjs/express";
 import * as AdminJSMongoose from "@adminjs/mongoose";
@@ -15,6 +16,7 @@ import bcryptjs from "bcryptjs";
 import adminOptions from "./admin.options.js";
 
 import * as url from "url";
+import { appendFile } from "fs";
 
 const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 
@@ -52,7 +54,7 @@ AdminJS.registerAdapter({
 const start = async () => {
   const app = express();
   app.use(express.json());
-  app.use(express.static(path.join(__dirname, "../public")));
+  app.use(express.static(path.join(__dirname, "../client/public")));
 
   const admin = new AdminJS(adminOptions);
   const ConnectSession = Connect(session);
@@ -92,6 +94,7 @@ const start = async () => {
   });
 
   app.use("/api/auth", authRoutes);
+  app.use("/api/news", newsRoutes);
 
   app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500;

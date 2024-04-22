@@ -1,11 +1,13 @@
 import React from "react";
 
-export default function NewsCard({ imageUrl, title, content }) {
+export default function NewsCard({ image, title, content }) {
   const truncatedContent = content.slice(0, 100) + "...";
+
+  const imgUrl = image ? "/files/" + image : "newsdefault.png";
   return (
     <div className="bg-white shadow-lg rounded-lg overflow-hidden mx-4">
       {/* Thumbnail */}
-      <img src={imageUrl} alt={title} className="w-full h-48 object-cover" />
+      <img src={imgUrl} alt={title} className="w-full h-48 object-cover" />
       {/* Content */}
       <div className="p-4">
         {/* News Title */}

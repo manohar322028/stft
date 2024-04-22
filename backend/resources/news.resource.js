@@ -22,6 +22,10 @@ export default {
         isVisible: { list: true, show: true, edit: true, filter: false },
       },
 
+      slug: {
+        isVisible: { list: false, show: true, edit: false, filter: false },
+      },
+
       createdAt: {
         isVisible: { list: false, show: true, edit: false, filter: false },
       },
@@ -45,7 +49,7 @@ export default {
         mimeTypes: ["image/png", "image/jpg", "image/jpeg"],
       },
       uploadPath: (record, filename) =>
-        `news/${record.title().split(" ").join("-")}.${filename
+        `news/${record.get("slug").split(" ").join("-")}.${filename
           .split(".")
           .pop()}`,
     }),

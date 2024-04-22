@@ -18,11 +18,10 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
-            <Route path="/admindashboard" element={<Dashboard props />} />
+
             <Route path="/notices" element={<Notices />} />
             <Route path="/news" element={<News />} />
             <Route path="/downloads" element={<Downloads />} />
-            <Route path="/adminlogin" element={<Login />} />
           </Routes>
         </div>
         <Footer />
