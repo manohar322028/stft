@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import authRoutes from "./routes/auth.route.js";
 import newsRoutes from "./routes/news.route.js";
+import noticeRoutes from "./routes/notice.route.js";
 import AdminJS from "adminjs";
 import AdminJSExpress from "@adminjs/express";
 import * as AdminJSMongoose from "@adminjs/mongoose";
@@ -95,6 +96,7 @@ const start = async () => {
 
   app.use("/api/auth", authRoutes);
   app.use("/api/news", newsRoutes);
+  app.use("/api/notices", noticeRoutes);
 
   app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500;

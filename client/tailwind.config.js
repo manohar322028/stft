@@ -7,7 +7,7 @@ export default {
     extend: {
       colors: {
         themeRed: "rgb(200 30 30)",
-        themeBlue: "rgb(30 64 175)",
+        themeBlue: "rgb(29 78 216)",
       },
     },
   },

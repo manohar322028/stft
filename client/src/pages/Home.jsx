@@ -10,6 +10,7 @@ import { FaChevronLeft, FaChevronRight, FaCircle } from "react-icons/fa";
 
 export default function Home() {
   const [news, setNews] = useState([]);
+  const [notices, setNotices] = useState([]);
   const [slideIndex, setSlideIndex] = useState(0);
   let sliderRef = useRef(null);
   const nextSlide = () => {
@@ -30,6 +31,20 @@ export default function Home() {
         });
     };
     fetchNews();
+  }, []);
+
+  useEffect(() => {
+    const fetchNotices = async () => {
+      await fetch("/api/notices")
+        .then((res) => res.json())
+        .then((data) => {
+          data = data.sort(
+            (a, b) => new Date(b.updatedAt) - new Date(a.updatedAt)
+          );
+          setNotices(data);
+        });
+    };
+    fetchNotices();
   }, []);
 
   const sliderSettings = {
@@ -96,7 +111,7 @@ export default function Home() {
       {/* notices */}
       <div className="container mx-auto px-4 pb-4">
         <h2 className="text-3xl font-bold mb-6 ml-4">Latest Notices</h2>
-        <NoticeHome />
+        <NoticeHome notices={notices.slice(0, 10)} />
         <p className="text-right mr-4 text-lg mt-10 underline">
           Click Here for More Notices
         </p>
