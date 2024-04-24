@@ -5,7 +5,7 @@ import Pagination from "../components/Pagination";
 const NewsPage = () => {
   const [news, setNews] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 1;
+  const itemsPerPage = 12;
 
   useEffect(() => {
     const fetchNews = async () => {
@@ -33,9 +33,11 @@ const NewsPage = () => {
     <div className="container mx-auto py-12 px-4">
       <h2 className="text-3xl font-bold mb-8 ml-4">Latest News</h2>
 
-      {currentNews.map((newsItem) => (
-        <NewsCard key={newsItem._id} {...newsItem} />
-      ))}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4">
+        {currentNews.map((newsItem) => (
+          <NewsCard key={newsItem._id} {...newsItem} />
+        ))}
+      </div>
 
       <Pagination
         itemsPerPage={itemsPerPage}
