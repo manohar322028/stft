@@ -7,8 +7,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useState, useEffect, useRef } from "react";
 import { FaChevronLeft, FaChevronRight, FaCircle } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
+  const navigate = useNavigate();
   const [news, setNews] = useState([]);
   const [notices, setNotices] = useState([]);
   const [slideIndex, setSlideIndex] = useState(0);
@@ -18,6 +20,10 @@ export default function Home() {
   };
   const previousSlide = () => {
     sliderRef.slickPrev();
+  };
+
+  const changeRoute = (route) => () => {
+    navigate(route);
   };
   useEffect(() => {
     const fetchNews = async () => {
@@ -103,7 +109,10 @@ export default function Home() {
             />
           </div>
         </div>
-        <p className="text-right mr-4 text-lg mt-10 underline">
+        <p
+          className="text-right mr-4 text-lg mt-10 underline cursor-pointer"
+          onClick={changeRoute("/news")}
+        >
           Click Here for More News
         </p>
       </div>
@@ -112,7 +121,10 @@ export default function Home() {
       <div className="container mx-auto px-4 pb-4">
         <h2 className="text-3xl font-bold mb-6 ml-4">Latest Notices</h2>
         <NoticeHome notices={notices.slice(0, 10)} />
-        <p className="text-right mr-4 text-lg mt-10 underline">
+        <p
+          className="text-right mr-4 text-lg mt-10 underline cursor-pointer"
+          onClick={changeRoute("/notices")}
+        >
           Click Here for More Notices
         </p>
       </div>

@@ -1,13 +1,25 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
-import Dashboard from "./pages/Dashboard";
+
 import Notices from "./pages/Notices";
 import News from "./pages/News";
 import Downloads from "./pages/Downloads";
 import Header from "./components/Header";
-import Login from "./pages/Login";
+
+import { useEffect } from "react";
+
 import Footer from "./components/Footer";
+
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
 
 export default function App() {
   return (
@@ -15,6 +27,7 @@ export default function App() {
       <BrowserRouter>
         <Header />
         <div className="flex-grow">
+          <ScrollToTop />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
