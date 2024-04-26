@@ -1,20 +1,42 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { RxHamburgerMenu } from "react-icons/rx";
+import { MdArrowDropDown } from "react-icons/md";
 import { IconContext } from "react-icons";
 
 export default function Header() {
   const location = useLocation();
   const [isClicked, setIsClicked] = useState(false);
+  const [isClickedDistrict, setIsClickedDistrict] = useState(false);
 
   const toggleMenu = () => {
     setIsClicked(!isClicked);
   };
 
+  const toggleDistrict = () => {
+    setIsClickedDistrict(!isClickedDistrict);
+  };
+  const dropdownRef = useRef(null);
+  useEffect(() => {
+    // Add event listener to close dropdown when clicking outside of it
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsClickedDistrict(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const districts = ["agh", "ugh", "haghd", "huagahg"];
+
   return (
     <>
       <nav className="bg-themeRed text-white px-4 border-b border-gray-300 shadow-md h-16">
-        <div className="container mx-auto flex justify-between items-center h-full w-full max-w-7xl">
+        <div className="container mx-auto flex justify-between items-center h-full w-full max-w-7xl relative">
           <Link to="/" className="flex items-center justify-start h-full">
             <img src="logo.png" alt="Logo" className="w-12 h-12" />
             <span className="mx-2 text-2xl font-bold">NNTA Bagmati</span>
@@ -39,13 +61,32 @@ export default function Header() {
             >
               Downloads
             </NavLink>
+            <NavLink onClick={toggleDistrict} active={isClickedDistrict}>
+              Districts <MdArrowDropDown />
+            </NavLink>
+            {/* districts dropdown */}
+            <div
+              ref={dropdownRef}
+              className={`${
+                isClickedDistrict ? "inline-block" : "hidden"
+              } absolute top-full right-0 mt-1 bg-white border border-gray-300 shadow-lg rounded-md overflow-hidden z-30 w-48`}
+            >
+              {districts.map((district) => (
+                <Link
+                  to={`/districts/${district}`}
+                  className="block px-4 py-2 text-gray-800 cursor-pointer hover:bg-gray-200 hover:text-gray-900"
+                >
+                  {district}
+                </Link>
+              ))}
+            </div>
           </div>
 
           {/* for mobile */}
 
           <IconContext.Provider value={{ color: "white", size: "2em" }}>
             <button
-              className="md:hidden focus:outline-none"
+              className="md:hidden focus:outline-none z-50"
               onClick={toggleMenu}
             >
               <RxHamburgerMenu />

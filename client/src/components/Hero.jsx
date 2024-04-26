@@ -5,7 +5,7 @@ export default function Hero() {
     <div className="relative" style={{ height: `calc(100vh - 4rem)` }}>
       {/* Background Image */}
       <img
-        src="https://source.unsplash.com/1600x900/?nature,water"
+        src="https://images.unsplash.com/photo-1477346611705-65d1883cee1e?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=900&ixid=MnwxfDB8MXxyYW5kb218MHx8bmF0dXJlLHdhdGVyfHx8fHx8MTcxNDExMjQ5Ng&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1600"
         alt="Hero Background"
         className="absolute inset-0 object-cover w-full h-full"
       />
@@ -13,7 +13,7 @@ export default function Hero() {
       {/* Text Overlay */}
       <div className="absolute inset-0 bg-black opacity-50"></div>
 
-      <div className="relative z-10 flex flex-col justify-end h-full text-white pl-12 pb-12">
+      <div className="relative flex flex-col justify-end h-full text-white pl-12 pb-12">
         <div className="text-left">
           <h1 className="text-4xl font-extrabold">
             Nepal National Teachers Association
