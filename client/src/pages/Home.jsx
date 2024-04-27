@@ -67,7 +67,7 @@ export default function Home() {
   };
 
   return (
-    <div className="w-full z-20">
+    <div className="w-full">
       {/* hero */}
       <Hero />
 
@@ -80,7 +80,7 @@ export default function Home() {
           }}
           {...sliderSettings}
         >
-          {news.map((newsItem) => (
+          {news.slice(0, 5).map((newsItem) => (
             <NewsCard key={newsItem._id} {...newsItem} />
           ))}
         </Slider>
