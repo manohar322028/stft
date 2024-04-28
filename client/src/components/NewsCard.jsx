@@ -1,7 +1,18 @@
 import React from "react";
 
 export default function NewsCard({ image, title, content }) {
-  const truncatedContent = content.slice(0, 100) + "...";
+  // Function to safely truncate HTML content
+  const truncateHTML = (html, maxLength) => {
+    const truncatedText = document.createElement("div");
+    truncatedText.innerHTML = html;
+    let text = truncatedText.textContent || truncatedText.innerText || "";
+    if (text.length > maxLength) {
+      text = text.slice(0, maxLength) + "...";
+    }
+    return text;
+  };
+
+  const truncatedContent = truncateHTML(content, 100);
 
   const imgUrl = image ? "/files/" + image : "newsdefault.png";
   return (
