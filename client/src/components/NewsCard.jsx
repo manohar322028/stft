@@ -1,6 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-export default function NewsCard({ image, title, content }) {
+export default function NewsCard({ image, title, content, slug }) {
   // Function to safely truncate HTML content
   const truncateHTML = (html, maxLength) => {
     const truncatedText = document.createElement("div");
@@ -28,9 +29,11 @@ export default function NewsCard({ image, title, content }) {
         <p className="text-gray-600 text-sm mb-4">{truncatedContent}</p>
 
         {/* Read More Button */}
-        <button className="px-4 py-2 bg-themeBlue text-white rounded hover:bg-blue-600">
-          Read More
-        </button>
+        <Link to={`/news/${slug}`}>
+          <button className="px-4 py-2 bg-themeBlue text-white rounded hover:bg-blue-600">
+            Read More
+          </button>
+        </Link>
       </div>
     </div>
   );

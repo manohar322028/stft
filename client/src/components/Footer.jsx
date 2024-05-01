@@ -11,7 +11,7 @@ export default function FooterCom() {
               to="/"
               className="self-center whitespace-nowrap text-lg sm:text-xl font-semibold dark:text-white flex flex-row align-middle items-center"
             >
-              <img src="logo.png" alt="Logo" className="w-12 h-12" />
+              <img src="/logo.png" alt="Logo" className="w-12 h-12" />
               <span className="mx-2 text-xl font-bold text-gray-700">
                 NNTA Bagmati
               </span>

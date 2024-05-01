@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
-
+import NewsPage from "./pages/NewsPage";
 import Notices from "./pages/Notices";
 import News from "./pages/News";
 import Downloads from "./pages/Downloads";
@@ -34,6 +34,7 @@ export default function App() {
             <Route path="/notices" element={<Notices />} />
             <Route path="/news" element={<News />} />
             <Route path="/downloads" element={<Downloads />} />
+            <Route path="/news/:postSlug" element={<NewsPage />} />
           </Routes>
         </div>
         <Footer />
