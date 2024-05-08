@@ -6,10 +6,14 @@ export default {
   theme: {
     extend: {
       colors: {
-        themeRed: "rgb(200 30 30)",
-        themeBlue: "rgb(29 78 216)",
+        themeRed: "#FF0000",
+        themeSkin: "#DDCA7D",
+        themeBlue: "#03045E",
+        themeGray: "#6B7D7D",
+        themeBrown: "#100B00",
+        themeBlack: "#1F2421",
       },
     },
   },
-  plugins: [flowbite.plugin()],
+  plugins: [flowbite.plugin(), require("tailwind-scrollbar")],
 };

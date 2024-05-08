@@ -3,6 +3,9 @@ import { Link, useLocation } from "react-router-dom";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { MdArrowDropDown } from "react-icons/md";
 import { IconContext } from "react-icons";
+import { MdEmail } from "react-icons/md";
+import { MdPhone } from "react-icons/md";
+import { BsFacebook, BsInstagram, BsTwitterX } from "react-icons/bs";
 
 export default function Header() {
   const location = useLocation();
@@ -31,17 +34,58 @@ export default function Header() {
     };
   }, []);
 
+  const mobileDropdownRef = useRef(null);
+
+  useEffect(() => {
+    if (isClickedDistrict && mobileDropdownRef.current) {
+      // Scroll to the mobile dropdown when it's clicked
+      mobileDropdownRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  }, [isClickedDistrict]);
+
   const districts = ["agh", "ugh", "haghd", "huagahg"];
 
   return (
     <>
-      <nav className="bg-themeRed text-white px-4 border-b border-gray-300 shadow-md h-16 z-10">
-        <div className="container mx-auto flex justify-between items-center h-full w-full max-w-7xl relative">
-          <Link to="/" className="flex items-center justify-start h-full">
-            <img src="/logo.png" alt="Logo" className="w-12 h-12" />
-            <span className="mx-2 text-2xl font-bold">NNTA Bagmati</span>
-          </Link>
+      <header className=" w-full z-10 bg-themeSkin">
+        <div className="xl:container mx-auto md:max-lg:mx-0 flex flex-col md:flex-row items-center justify-between gap-2 py-4 px-6">
+          <IconContext.Provider value={{ color: "#1F2421", size: "2em" }}>
+            <div className="logo-section flex items-center mb-2 md:mb-0">
+              <Link to="/" className="flex flex-col md:flex-row items-center">
+                <img src="/logo.png" alt="Logo" className="w-16 h-16 mr-2" />
+                <span className="text-lg md:text-xl font-bold text-center merriweather-black text-themeBrown">
+                  Society of Technology Friendly Teachers Nepal
+                </span>
+              </Link>
+            </div>
+            <div className="contact-section flex flex-col md:flex-row items-center md:ml-4 merriweather-light text-themeBlack">
+              <div className="flex items-center mb-2 md:mb-0 mr-4 md:mr-6">
+                <MdEmail className="w-5 h-5 mr-1 md:mr-2 text-gray-500" />
+                <span className="text-xs md:text-sm text-gray-800">
+                  email@email.com
+                </span>
+              </div>
+              <div className="flex items-center">
+                <MdPhone className="w-5 h-5 mr-1 md:mr-2 text-gray-500" />
+                <span className="text-xs md:text-sm text-gray-800">
+                  +977-1234567890
+                </span>
+              </div>
+            </div>
+            <div className="social-media-section flex items-center mt-2 md:mt-0">
+              <BsFacebook className="w-6 h-6 mr-2 text-gray-500 hover:scale-125 cursor-pointer" />
+              <BsInstagram className="w-6 h-6 mr-2 text-gray-500 hover:scale-125 cursor-pointer" />
+              <BsTwitterX className="w-6 h-6 mr-2 text-gray-500 hover:scale-125 cursor-pointer" />
+            </div>
+          </IconContext.Provider>
+        </div>
+      </header>
 
+      <nav className="bg-themeGray text-themeBrown px-4 border-b border-gray-300 shadow-md h-16 z-10">
+        <div className="xl:container mx-auto flex justify-between items-center h-full w-full max-w-7xl">
           <div className="hidden md:flex md:items-center md:justify-end h-full">
             <NavLink to="/" active={location.pathname === "/"}>
               Home
@@ -61,42 +105,50 @@ export default function Header() {
             >
               Downloads
             </NavLink>
-            <NavLink onClick={toggleDistrict} active={isClickedDistrict}>
-              Districts <MdArrowDropDown />
-            </NavLink>
-            {/* districts dropdown */}
             <div
-              ref={dropdownRef}
-              className={`${
-                isClickedDistrict ? "inline-block" : "hidden"
-              } absolute top-full right-0 mt-1 bg-white border border-gray-300 shadow-lg rounded-md overflow-hidden z-30 w-48`}
+              onClick={toggleDistrict}
+              className={`relative px-6 h-full flex items-center justify-center hover:bg-themeBlue hover:text-white hover:border-x-[0.5px] hover:border-white transition-colors duration-200 cursor-pointer ${
+                isClickedDistrict ? "bg-themeBlue text-white" : ""
+              }`}
             >
-              {districts.map((district) => (
-                <Link
-                  key={district}
-                  to={`/districts/${district}`}
-                  className="block px-4 py-2 text-gray-800 cursor-pointer hover:bg-gray-200 hover:text-gray-900"
-                >
-                  {district}
-                </Link>
-              ))}
+              Provinces <MdArrowDropDown />
+              {/* provinces dropdown */}
+              <div
+                ref={dropdownRef}
+                className={`${
+                  isClickedDistrict ? "inline-block" : "hidden"
+                } absolute top-full left-0 mt-1 bg-white border border-gray-300 shadow-lg rounded-md overflow-hidden z-30 w-48`}
+              >
+                {districts.map((district) => (
+                  <Link
+                    key={district}
+                    to={`/districts/${district}`}
+                    className="block px-4 py-2 text-gray-800 cursor-pointer hover:bg-gray-200 hover:text-gray-900"
+                  >
+                    {district}
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
 
           {/* for mobile */}
 
-          <IconContext.Provider value={{ color: "white", size: "2em" }}>
-            <button
-              className="md:hidden focus:outline-none z-50"
-              onClick={toggleMenu}
-            >
-              <RxHamburgerMenu />
-            </button>
-          </IconContext.Provider>
+          <div
+            className="flex md:hidden items-center justify-around mx-0 w-full h-full cursor-pointer"
+            onClick={toggleMenu}
+          >
+            <span className="text-white merriweather-regular ">Menu</span>
+            <IconContext.Provider value={{ color: "white", size: "2em" }}>
+              <button className=" focus:outline-none z-50">
+                <RxHamburgerMenu />
+              </button>
+            </IconContext.Provider>
+          </div>
           <div
             className={`md:hidden ${
               isClicked ? "block" : "hidden"
-            } fixed inset-0 bg-red-700 text-white z-50 bg-opacity-95 transition-opacity duration-300`}
+            } fixed inset-0 overflow-y-auto scrollbar scrollbar-w-2 scrollbar-thumb-gray-100 scrollbar-track-transparent scrollbar-thumb-rounded-full  bg-themeBlack text-white z-50 bg-opacity-95 transition-opacity duration-300`}
           >
             <div className="flex flex-col items-center justify-center h-screen text-white">
               <button
@@ -153,6 +205,34 @@ export default function Header() {
               >
                 Downloads
               </MNavLink>
+
+              <div
+                className={`relative px-6 py-4 h-full w-full flex items-center justify-start text-xl hover:bg-themeGray hover:text-themeBrown hover:bg-opacity-40 transition-colors duration-200 cursor-pointer ${
+                  isClickedDistrict
+                    ? "bg-gray-100 bg-opacity-40 text-themeBlue"
+                    : ""
+                }`}
+                onClick={toggleDistrict}
+              >
+                Provinces <MdArrowDropDown />
+                {/* provinces dropdown */}
+                <div
+                  ref={mobileDropdownRef}
+                  className={`${
+                    isClickedDistrict ? "inline-block" : "hidden"
+                  } absolute top-full left-0 mr-2 bg-transparent overflow-hidden w-full`}
+                >
+                  {districts.map((district) => (
+                    <Link
+                      key={district}
+                      to={`/districts/${district}`}
+                      className="block px-12 py-2 cursor-pointer text-lg text-white hover:bg-themeGray hover:text-themeBrown hover:bg-opacity-40 transition-colors duration-200"
+                    >
+                      {district}
+                    </Link>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -162,11 +242,10 @@ export default function Header() {
 }
 
 function NavLink({ to, active, children, onClick }) {
-  const baseClasses =
-    "px-6 text-white h-full flex items-center justify-center ";
+  const baseClasses = "px-6 h-full flex items-center justify-center ";
   const hoverClasses =
-    "hover:bg-blue-900 hover:text-white hover:border-x-[0.5px] hover:border-white transition-colors duration-200 ";
-  const activeClasses = "bg-blue-900 text-white";
+    "hover:bg-themeBlue hover:text-white hover:border-x-[0.5px] hover:border-white transition-colors duration-200 ";
+  const activeClasses = "bg-themeBlue text-white";
 
   return (
     <Link
@@ -183,10 +262,10 @@ function NavLink({ to, active, children, onClick }) {
 
 function MNavLink({ to, active, children, onClick }) {
   const baseClasses =
-    "px-6 py-4 h-full w-full flex items-center justify-center text-xl";
+    "px-6 py-4 h-full w-full flex items-center justify-start text-xl";
   const hoverClasses =
-    "hover:bg-gray-100 hover:text-black hover:bg-opacity-40 transition-colors duration-200 ";
-  const activeClasses = "bg-gray-100 bg-opacity-40 text-blue-900";
+    "hover:bg-themeGray hover:text-themeBrown hover:bg-opacity-40 transition-colors duration-200 ";
+  const activeClasses = "bg-gray-100 bg-opacity-40 text-themeBlue";
 
   return (
     <Link
