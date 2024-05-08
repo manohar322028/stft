@@ -11,6 +11,7 @@ export default function Header() {
   const location = useLocation();
   const [isClicked, setIsClicked] = useState(false);
   const [isClickedDistrict, setIsClickedDistrict] = useState(false);
+  const [isClickedDistrictMobile, setIsClickedDistrictMobile] = useState(false);
 
   const toggleMenu = () => {
     setIsClicked(!isClicked);
@@ -19,7 +20,12 @@ export default function Header() {
   const toggleDistrict = () => {
     setIsClickedDistrict(!isClickedDistrict);
   };
+
+  const toggleDistrictMobile = () => {
+    setIsClickedDistrictMobile(!isClickedDistrictMobile);
+  };
   const dropdownRef = useRef(null);
+
   useEffect(() => {
     // Add event listener to close dropdown when clicking outside of it
     const handleClickOutside = (event) => {
@@ -37,16 +43,24 @@ export default function Header() {
   const mobileDropdownRef = useRef(null);
 
   useEffect(() => {
-    if (isClickedDistrict && mobileDropdownRef.current) {
+    if (isClickedDistrictMobile && mobileDropdownRef.current) {
       // Scroll to the mobile dropdown when it's clicked
       mobileDropdownRef.current.scrollIntoView({
         behavior: "smooth",
         block: "start",
       });
     }
-  }, [isClickedDistrict]);
+  }, [isClickedDistrictMobile]);
 
-  const districts = ["agh", "ugh", "haghd", "huagahg"];
+  const provinces = [
+    "Province 1",
+    "Province 2",
+    "Province 3",
+    "Province 4",
+    "Province 5",
+    "Province 6",
+    "Province 7",
+  ];
 
   return (
     <>
@@ -119,13 +133,13 @@ export default function Header() {
                   isClickedDistrict ? "inline-block" : "hidden"
                 } absolute top-full left-0 mt-1 bg-white border border-gray-300 shadow-lg rounded-md overflow-hidden z-30 w-48`}
               >
-                {districts.map((district) => (
+                {provinces.map((province) => (
                   <Link
-                    key={district}
-                    to={`/districts/${district}`}
+                    key={province}
+                    to={`/provinces/${province}`}
                     className="block px-4 py-2 text-gray-800 cursor-pointer hover:bg-gray-200 hover:text-gray-900"
                   >
-                    {district}
+                    {province}
                   </Link>
                 ))}
               </div>
@@ -212,23 +226,26 @@ export default function Header() {
                     ? "bg-gray-100 bg-opacity-40 text-themeBlue"
                     : ""
                 }`}
-                onClick={toggleDistrict}
+                onClick={toggleDistrictMobile}
               >
                 Provinces <MdArrowDropDown />
                 {/* provinces dropdown */}
                 <div
                   ref={mobileDropdownRef}
                   className={`${
-                    isClickedDistrict ? "inline-block" : "hidden"
+                    isClickedDistrictMobile ? "inline-block" : "hidden"
                   } absolute top-full left-0 mr-2 bg-transparent overflow-hidden w-full`}
                 >
-                  {districts.map((district) => (
+                  {provinces.map((province) => (
                     <Link
-                      key={district}
-                      to={`/districts/${district}`}
-                      className="block px-12 py-2 cursor-pointer text-lg text-white hover:bg-themeGray hover:text-themeBrown hover:bg-opacity-40 transition-colors duration-200"
+                      key={province}
+                      to={`/provinces/${province}`}
+                      onClick={() => {
+                        toggleMenu();
+                      }}
+                      className="block w-full px-12 py-2 cursor-pointer text-lg text-white hover:bg-themeGray hover:text-themeBrown hover:bg-opacity-40 transition-colors duration-200"
                     >
-                      {district}
+                      {province}
                     </Link>
                   ))}
                 </div>
