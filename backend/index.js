@@ -5,6 +5,8 @@ import authRoutes from "./routes/auth.route.js";
 import newsRoutes from "./routes/news.route.js";
 import noticeRoutes from "./routes/notice.route.js";
 import downloadRoutes from "./routes/download.route.js";
+import aboutRoutes from "./routes/about.route.js";
+import teamRoutes from "./routes/team.route.js";
 import AdminJS from "adminjs";
 import AdminJSExpress from "@adminjs/express";
 import * as AdminJSMongoose from "@adminjs/mongoose";
@@ -99,6 +101,8 @@ const start = async () => {
   app.use("/api/news", newsRoutes);
   app.use("/api/notices", noticeRoutes);
   app.use("/api/downloads", downloadRoutes);
+  app.use("/api/abouts", aboutRoutes);
+  app.use("/api/teams", teamRoutes);
 
   app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500;
