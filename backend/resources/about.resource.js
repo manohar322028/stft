@@ -83,7 +83,7 @@ export default {
         mimeTypes: ["image/png", "image/jpg", "image/jpeg"],
       },
       uploadPath: (record, filename) =>
-        `aboutUs/about-image.${filename.split(".").pop()}`,
+        `aboutUs/about-stft-${record.get("province_name").split(" ").join("-")}.${filename.split(".").pop()}`,
     }),
   ],
 };

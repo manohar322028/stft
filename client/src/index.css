@@ -4,6 +4,8 @@
 
 html {
   font-size: 16px;
+  background-color: #f2f3f4;
+  color: #100e17;
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
@@ -13,67 +15,73 @@ html {
 }
 
 .merriweather-light {
-  font-family: "Merriweather", serif;
+  font-family: "Merriweather Sans", sans-serif;
   font-weight: 300;
   font-style: normal;
 }
 
 .merriweather-regular {
-  font-family: "Merriweather", serif;
-  font-weight: 400;
+  font-family: "Merriweather Sans", sans-serif;
+  font-weight: 390;
   font-style: normal;
 }
 
 .merriweather-bold {
-  font-family: "Merriweather", serif;
-  font-weight: 700;
+  font-family: "Merriweather Sans", sans-serif;
+  font-weight: 600;
   font-style: normal;
 }
 
 .merriweather-black {
-  font-family: "Merriweather", serif;
-  font-weight: 900;
+  font-family: "Merriweather Sans", sans-serif;
+  font-weight: 800;
   font-style: normal;
 }
 
 .merriweather-light-italic {
-  font-family: "Merriweather", serif;
+  font-family: "Merriweather Sans", sans-serif;
   font-weight: 300;
   font-style: italic;
 }
 
 .merriweather-regular-italic {
-  font-family: "Merriweather", serif;
+  font-family: "Merriweather Sans", sans-serif;
   font-weight: 400;
   font-style: italic;
 }
 
 .merriweather-bold-italic {
-  font-family: "Merriweather", serif;
+  font-family: "Merriweather Sans", sans-serif;
   font-weight: 700;
   font-style: italic;
 }
 
 .merriweather-black-italic {
-  font-family: "Merriweather", serif;
+  font-family: "Merriweather Sans", sans-serif;
   font-weight: 900;
   font-style: italic;
 }
 
 .post-content p {
   margin-bottom: 0.5rem;
+  font-family: "Merriweather Sans", sans-serif;
+  font-size: 1.1rem;
+  line-height: 2rem;
+  padding-bottom: 0.5rem;
+
+  font-weight: 400;
 }
 
 .post-content h1 {
   font-size: 1.5rem;
   font-weight: 600;
-  font-family: "Merriweather", serif;
+  font-family: "Merriweather Sans", sans-serif;
   margin: 1.5rem 0;
 }
 
 .post-content h2 {
   font-size: 1.4rem;
-  font-family: "Merriweather", serif;
+  font-family: "Merriweather Sans", sans-serif;
   margin: 1.5rem 0;
 }
 
@@ -88,7 +96,7 @@ html {
 
 .post-content blockquote {
   font-style: italic;
-  font-family: "Merriweather", serif;
+  font-family: "Merriweather Sans", sans-serif;
   font-weight: 500;
   background: #ddca7d;
   border-left: 3px solid #03045e;

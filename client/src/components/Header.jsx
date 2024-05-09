@@ -64,7 +64,7 @@ export default function Header() {
 
   return (
     <>
-      <header className=" w-full z-10 bg-themeSkin">
+      <header className=" w-full z-10 bg-themeSkin border-b-2 border-themeBlue bg-opacity-80">
         <div className="xl:container mx-auto md:max-lg:mx-0 flex flex-col md:flex-row items-center justify-between gap-2 py-4 px-6">
           <IconContext.Provider value={{ color: "#1F2421", size: "2em" }}>
             <div className="logo-section flex items-center mb-2 md:mb-0">
@@ -98,7 +98,7 @@ export default function Header() {
         </div>
       </header>
 
-      <nav className="bg-themeGray text-themeBrown px-4 border-b border-gray-300 shadow-md h-16 z-10">
+      <nav className="bg-themeGray text-gray-900 merriweather-regular text-md px-4 shadow-sm shadow-gray-400 h-16 z-10">
         <div className="xl:container mx-auto flex justify-between items-center h-full w-full max-w-7xl">
           <div className="hidden md:flex md:items-center md:justify-end h-full">
             <NavLink to="/" active={location.pathname === "/"}>
@@ -121,8 +121,8 @@ export default function Header() {
             </NavLink>
             <div
               onClick={toggleDistrict}
-              className={`relative px-6 h-full flex items-center justify-center hover:bg-themeBlue hover:text-white hover:border-x-[0.5px] hover:border-white transition-colors duration-200 cursor-pointer ${
-                isClickedDistrict ? "bg-themeBlue text-white" : ""
+              className={`relative px-6 h-full flex items-center justify-center hover:bg-themeBlue hover:text-gray-200 hover:border-x-[0.5px] hover:border-white transition-colors duration-200 cursor-pointer ${
+                isClickedDistrict ? "bg-themeBlue text-gray-200" : ""
               }`}
             >
               Provinces <MdArrowDropDown />
@@ -152,8 +152,8 @@ export default function Header() {
             className="flex md:hidden items-center justify-around mx-0 w-full h-full cursor-pointer"
             onClick={toggleMenu}
           >
-            <span className="text-white merriweather-regular ">Menu</span>
-            <IconContext.Provider value={{ color: "white", size: "2em" }}>
+            <span className="text-themeBrown merriweather-regular ">Menu</span>
+            <IconContext.Provider value={{ color: "#100B00ea", size: "2em" }}>
               <button className=" focus:outline-none z-50">
                 <RxHamburgerMenu />
               </button>
@@ -261,8 +261,8 @@ export default function Header() {
 function NavLink({ to, active, children, onClick }) {
   const baseClasses = "px-6 h-full flex items-center justify-center ";
   const hoverClasses =
-    "hover:bg-themeBlue hover:text-white hover:border-x-[0.5px] hover:border-white transition-colors duration-200 ";
-  const activeClasses = "bg-themeBlue text-white";
+    "hover:bg-themeBlue hover:text-gray-200 hover:border-x-[0.5px] hover:border-white transition-colors duration-200 ";
+  const activeClasses = "bg-themeBlue text-gray-200";
 
   return (
     <Link

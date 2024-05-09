@@ -3,6 +3,7 @@ import Hero from "../components/Hero";
 import NewsCard from "../components/NewsCard";
 import Slider from "react-slick";
 import NoticeHome from "../components/NoticeHome";
+import Downloads from "../components/Downloads";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useState, useEffect, useRef } from "react";
@@ -13,6 +14,7 @@ export default function Home() {
   const navigate = useNavigate();
   const [news, setNews] = useState([]);
   const [notices, setNotices] = useState([]);
+  const [downloads, setDownloads] = useState([]);
   const [slideIndex, setSlideIndex] = useState(0);
   let sliderRef = useRef(null);
   const nextSlide = () => {
@@ -53,6 +55,20 @@ export default function Home() {
     fetchNotices();
   }, []);
 
+  useEffect(() => {
+    const fetchDownloads = async () => {
+      await fetch("/api/downloads")
+        .then((res) => res.json())
+        .then((data) => {
+          data = data.sort(
+            (a, b) => new Date(b.updatedAt) - new Date(a.updatedAt)
+          );
+          setDownloads(data);
+        });
+    };
+    fetchDownloads();
+  }, []);
+
   const sliderSettings = {
     dots: false,
     arrows: false,
@@ -74,7 +90,9 @@ export default function Home() {
       {/* news */}
 
       <div className="container mx-auto py-12 px-4">
-        <h2 className="text-3xl font-bold mb-8 ml-4">Latest News</h2>
+        <h2 className="text-3xl font-bold mb-8 ml-4 merriweather-bold">
+          Latest News
+        </h2>
 
         <div className="md:hidden grid gap-4 sm:grid-cols-2">
           {news.slice(0, 5).map((newsItem) => (
@@ -119,7 +137,7 @@ export default function Home() {
           </div>
         </div>
         <p
-          className="text-right mr-4 text-lg mt-10 underline cursor-pointer"
+          className="text-right mr-4 text-lg mt-10 underline cursor-pointer merriweather-regular"
           onClick={changeRoute("/news")}
         >
           Click Here for More News
@@ -128,11 +146,27 @@ export default function Home() {
 
       {/* notices */}
       <div className="container mx-auto px-4 pb-4">
-        <h2 className="text-3xl font-bold mb-6 ml-4">Latest Notices</h2>
+        <h2 className="text-3xl font-bold mb-6 ml-4 merriweather-bold">
+          Latest Notices
+        </h2>
         <NoticeHome notices={notices.slice(0, 10)} />
         <p
-          className="text-right mr-4 text-lg mt-10 underline cursor-pointer"
+          className="text-right mr-4 text-lg mt-10 underline cursor-pointer merriweather-regular"
           onClick={changeRoute("/notices")}
+        >
+          Click Here for More Downloads
+        </p>
+      </div>
+
+      {/* downloads */}
+      <div className="container mx-auto px-4 pb-4">
+        <h2 className="text-3xl font-bold mb-6 ml-4 merriweather-bold">
+          Downloads
+        </h2>
+        <Downloads notices={downloads.slice(0, 10)} />
+        <p
+          className="text-right mr-4 text-lg mt-10 underline cursor-pointer merriweather-regular"
+          onClick={changeRoute("/downloads")}
         >
           Click Here for More Notices
         </p>

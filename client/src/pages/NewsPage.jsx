@@ -48,7 +48,7 @@ export default function NewsPage() {
       </h1>
 
       {/* Date */}
-      <div className="flex justify-between p-3 border-b border-slate-500 mx-auto w-full text-xs">
+      <div className="flex justify-between p-3 border-b border-slate-500 mx-auto w-full text-xs merriweather-light">
         <span>Posted on {new Date(news.createdAt).toLocaleDateString()}</span>
       </div>
 

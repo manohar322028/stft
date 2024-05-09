@@ -15,6 +15,32 @@ export default {
       position: {
         isVisible: { list: true, show: true, edit: true, filter: true },
         position: 3,
+        availableValues: [
+          {
+            value: "Chairman",
+            label: "Chairman",
+          },
+          {
+            value: "Vice Chairman",
+            label: "Vice Chairman",
+          },
+          {
+            value: "Secretary",
+            label: "Secretary",
+          },
+          {
+            value: "Assistant Secretary",
+            label: "Assistant Secretary",
+          },
+          {
+            value: "Treasurer",
+            label: "Treasurer",
+          },
+          {
+            value: "Member",
+            label: "Member",
+          },
+        ],
       },
       province_number: {
         isVisible: { list: true, show: true, edit: true, filter: true },
