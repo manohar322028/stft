@@ -59,3 +59,39 @@ html {
   font-weight: 900;
   font-style: italic;
 }
+
+.post-content p {
+  margin-bottom: 0.5rem;
+}
+
+.post-content h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  font-family: "Merriweather", serif;
+  margin: 1.5rem 0;
+}
+
+.post-content h2 {
+  font-size: 1.4rem;
+  font-family: "Merriweather", serif;
+  margin: 1.5rem 0;
+}
+
+.post-content a {
+  color: rgb(73, 149, 199);
+  text-decoration: none;
+}
+
+.post-content a:hover {
+  text-decoration: underline;
+}
+
+.post-content blockquote {
+  font-style: italic;
+  font-family: "Merriweather", serif;
+  font-weight: 500;
+  background: #ddca7d;
+  border-left: 3px solid #03045e;
+  padding: 1rem 2rem;
+  margin: 1rem 0;
+}

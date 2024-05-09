@@ -6,6 +6,7 @@ import Notices from "./pages/Notices";
 import News from "./pages/News";
 import Downloads from "./pages/Downloads";
 import Header from "./components/Header";
+import ScrollTop from "./components/Scrolltop";
 
 import { useEffect } from "react";
 
@@ -37,6 +38,7 @@ export default function App() {
             <Route path="/news/:postSlug" element={<NewsPage />} />
           </Routes>
         </div>
+        <ScrollTop />
         <Footer />
       </BrowserRouter>
     </div>

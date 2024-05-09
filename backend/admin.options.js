@@ -1,10 +1,13 @@
 import News from "./resources/news.resource.js";
 import Notice from "./resources/notice.resource.js";
 import Download from "./resources/download.resource.js";
+import About from "./resources/about.resource.js";
+import Team from "./resources/team.resource.js";
 import componentLoader from "./component-loader.js";
 
 const adminOptions = {
   componentLoader,
+  resources: [News, Notice, Download, About, Team],
   branding: {
     companyName: "Admin Panel",
     softwareBrothers: false,
@@ -15,6 +18,20 @@ const adminOptions = {
   locale: {
     translations: {
       en: {
+        resources: {
+          About: {
+            properties: {
+              province_number: "Province Number (0 if not a province)",
+              province_name: "Province Name ('Nepal' if not a province)",
+            },
+          },
+
+          Team: {
+            properties: {
+              province_number: "Province Number (0 if central member)",
+            },
+          },
+        },
         components: {
           Login: {
             welcomeHeader: "Welcome",
@@ -30,7 +47,6 @@ const adminOptions = {
     },
   },
 
-  resources: [News, Notice, Download],
   rootPath: "/admin",
 };
 

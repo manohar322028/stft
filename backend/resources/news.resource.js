@@ -9,6 +9,7 @@ export default {
     properties: {
       content: {
         type: "richtext",
+        position: 1,
 
         isVisible: { list: false, show: true, edit: true, filter: false },
       },

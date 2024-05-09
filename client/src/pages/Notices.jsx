@@ -31,17 +31,17 @@ export default function Notices() {
 
   return (
     <>
-      <div className="container mx-auto px-4 pb-4">
+      <div className="container mx-auto px-4 pb-4 mt-10">
         <h2 className="text-3xl font-bold mb-6 ml-4">Notices</h2>
         <NoticeHome notices={currentNotice} />
       </div>
-
       <Pagination
         itemsPerPage={itemsPerPage}
         totalItems={notices.length}
         paginate={paginate}
         currentPage={currentPage}
       />
+      <div className="mb-10"></div> {/* Spacer */}
     </>
   );
 }

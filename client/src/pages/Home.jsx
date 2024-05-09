@@ -72,41 +72,50 @@ export default function Home() {
       <Hero />
 
       {/* news */}
+
       <div className="container mx-auto py-12 px-4">
         <h2 className="text-3xl font-bold mb-8 ml-4">Latest News</h2>
-        <Slider
-          ref={(slider) => {
-            sliderRef = slider;
-          }}
-          {...sliderSettings}
-        >
+
+        <div className="md:hidden grid gap-4 sm:grid-cols-2">
           {news.slice(0, 5).map((newsItem) => (
             <NewsCard key={newsItem._id} {...newsItem} />
           ))}
-        </Slider>
-        {/* dots and arrows */}
-        <div className="flex items-center justify-center space-x-4 mt-8">
-          <div className="flex items-center space-x-4">
-            <FaChevronLeft
-              className="text-themeRed text-sm cursor-pointer hover:text-themeBlue"
-              onClick={previousSlide}
-            />
-            {[...Array(4)].map((_, index) => (
-              <FaCircle
-                key={index}
-                className={`${
-                  slideIndex === index
-                    ? "text-themeBlue opacity-80"
-                    : "text-gray-400"
-                } hover:text-themeBlue cursor-pointer text-sm`}
-                onClick={() => sliderRef.slickGoTo(index)}
-              />
+        </div>
+        <div className="hidden md:block">
+          <Slider
+            ref={(slider) => {
+              sliderRef = slider;
+            }}
+            {...sliderSettings}
+          >
+            {news.slice(0, 5).map((newsItem) => (
+              <NewsCard key={newsItem._id} {...newsItem} />
             ))}
+          </Slider>
+          {/* dots and arrows */}
+          <div className="flex items-center justify-center space-x-4 mt-8">
+            <div className="flex items-center space-x-4">
+              <FaChevronLeft
+                className="text-themeRed text-sm cursor-pointer hover:text-themeBlue"
+                onClick={previousSlide}
+              />
+              {[...Array(4)].map((_, index) => (
+                <FaCircle
+                  key={index}
+                  className={`${
+                    slideIndex === index
+                      ? "text-themeBlue opacity-80"
+                      : "text-gray-400"
+                  } hover:text-themeBlue cursor-pointer text-sm`}
+                  onClick={() => sliderRef.slickGoTo(index)}
+                />
+              ))}
 
-            <FaChevronRight
-              className="text-themeRed text-sm cursor-pointer hover:text-themeBlue"
-              onClick={nextSlide}
-            />
+              <FaChevronRight
+                className="text-themeRed text-sm cursor-pointer hover:text-themeBlue"
+                onClick={nextSlide}
+              />
+            </div>
           </div>
         </div>
         <p

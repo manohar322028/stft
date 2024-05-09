@@ -17,11 +17,11 @@ export default function NewsCard({ image, title, content, slug }) {
 
   const imgUrl = image ? "/files/" + image : "newsdefault.png";
   return (
-    <div className="bg-white shadow-lg rounded-lg overflow-hidden mx-4">
+    <div className="bg-white shadow-lg shadow-gray-400 rounded-lg overflow-hidden mx-4 mt-2 mb-8 transition duration-300 transform hover:scale-105 cursor-pointer">
       {/* Thumbnail */}
       <img src={imgUrl} alt={title} className="w-full h-48 object-cover" />
       {/* Content */}
-      <div className="p-4">
+      <div className="p-4 lg:h-48 h-40 mb-2 relative">
         {/* News Title */}
         <h2 className="text-xl font-bold mb-2">{title}</h2>
 
@@ -30,7 +30,7 @@ export default function NewsCard({ image, title, content, slug }) {
 
         {/* Read More Button */}
         <Link to={`/news/${slug}`}>
-          <button className="px-4 py-2 bg-themeBlue text-white rounded hover:bg-blue-600">
+          <button className="px-4 py-2 bg-themeBlue text-white rounded hover:bg-blue-800 absolute bottom-2">
             Read More
           </button>
         </Link>
