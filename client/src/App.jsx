@@ -4,6 +4,7 @@ import About from "./pages/About";
 import NewsPage from "./pages/NewsPage";
 import Notices from "./pages/Notices";
 import News from "./pages/News";
+import Province from "./pages/Province";
 import Downloads from "./pages/Downloads";
 import Header from "./components/Header";
 import ScrollTop from "./components/Scrolltop";
@@ -36,6 +37,7 @@ export default function App() {
             <Route path="/news" element={<News />} />
             <Route path="/downloads" element={<Downloads />} />
             <Route path="/news/:postSlug" element={<NewsPage />} />
+            <Route path="/provinces/:province" element={<Province />} />
           </Routes>
         </div>
         <ScrollTop />

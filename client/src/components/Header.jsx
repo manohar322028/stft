@@ -12,6 +12,18 @@ export default function Header() {
   const [isClicked, setIsClicked] = useState(false);
   const [isClickedDistrict, setIsClickedDistrict] = useState(false);
   const [isClickedDistrictMobile, setIsClickedDistrictMobile] = useState(false);
+  const [provinces, setProvinces] = useState([]);
+
+  useEffect(() => {
+    const fetchProvinces = async () => {
+      await fetch("/api/abouts/names")
+        .then((res) => res.json())
+        .then((data) => {
+          setProvinces(data);
+        });
+    };
+    fetchProvinces();
+  }, []);
 
   const toggleMenu = () => {
     setIsClicked(!isClicked);
@@ -51,16 +63,6 @@ export default function Header() {
       });
     }
   }, [isClickedDistrictMobile]);
-
-  const provinces = [
-    "Province 1",
-    "Province 2",
-    "Province 3",
-    "Province 4",
-    "Province 5",
-    "Province 6",
-    "Province 7",
-  ];
 
   return (
     <>
@@ -135,11 +137,11 @@ export default function Header() {
               >
                 {provinces.map((province) => (
                   <Link
-                    key={province}
-                    to={`/provinces/${province}`}
+                    key={province.province_number}
+                    to={`/provinces/${province.province_number}`}
                     className="block px-4 py-2 text-gray-800 cursor-pointer hover:bg-gray-200 hover:text-gray-900"
                   >
-                    {province}
+                    {province.province_name}
                   </Link>
                 ))}
               </div>
@@ -238,14 +240,14 @@ export default function Header() {
                 >
                   {provinces.map((province) => (
                     <Link
-                      key={province}
-                      to={`/provinces/${province}`}
+                      key={province.province_number}
+                      to={`/provinces/${province.province_number}`}
                       onClick={() => {
                         toggleMenu();
                       }}
                       className="block w-full px-12 py-2 cursor-pointer text-lg text-white hover:bg-themeGray hover:text-themeBrown hover:bg-opacity-40 transition-colors duration-200"
                     >
-                      {province}
+                      {province.province_name}
                     </Link>
                   ))}
                 </div>

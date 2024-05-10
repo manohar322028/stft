@@ -154,7 +154,7 @@ export default function Home() {
           className="text-right mr-4 text-lg mt-10 underline cursor-pointer merriweather-regular"
           onClick={changeRoute("/notices")}
         >
-          Click Here for More Downloads
+          Click Here for More Notices
         </p>
       </div>
 
@@ -168,7 +168,7 @@ export default function Home() {
           className="text-right mr-4 text-lg mt-10 underline cursor-pointer merriweather-regular"
           onClick={changeRoute("/downloads")}
         >
-          Click Here for More Notices
+          Click Here for More Downloads
         </p>
       </div>
     </div>

@@ -1,8 +1,22 @@
 import { Footer } from "flowbite-react";
 import { Link } from "react-router-dom";
 import { BsFacebook, BsInstagram, BsTwitterX } from "react-icons/bs";
+import { useState, useEffect } from "react";
 
 export default function FooterCom() {
+  const [provinces, setProvinces] = useState([]);
+
+  useEffect(() => {
+    const fetchProvinces = async () => {
+      await fetch("/api/abouts/names")
+        .then((res) => res.json())
+        .then((data) => {
+          setProvinces(data);
+        });
+    };
+    fetchProvinces();
+  }, []);
+
   return (
     <Footer
       container
@@ -55,30 +69,15 @@ export default function FooterCom() {
             <div>
               <Footer.Title title="Provinces" />
               <Footer.LinkGroup col>
-                <Footer.Link href="#" className="text-gray-800 dark:text-white">
-                  Kathmandu
-                </Footer.Link>
-                <Footer.Link href="#" className="text-gray-800 dark:text-white">
-                  Kavre
-                </Footer.Link>
-                <Footer.Link href="#" className="text-gray-800 dark:text-white">
-                  Lalitpur
-                </Footer.Link>
-                <Footer.Link href="#" className="text-gray-800 dark:text-white">
-                  Bhaktapur
-                </Footer.Link>
-                <Footer.Link href="#" className="text-gray-800 dark:text-white">
-                  Dhading
-                </Footer.Link>
-                <Footer.Link href="#" className="text-gray-800 dark:text-white">
-                  Nuwakot
-                </Footer.Link>
-                <Footer.Link href="#" className="text-gray-800 dark:text-white">
-                  Rasuwa
-                </Footer.Link>
-                <Footer.Link href="#" className="text-gray-800 dark:text-white">
-                  Sindhupalchowk
-                </Footer.Link>
+                {provinces.map((province) => (
+                  <Footer.Link
+                    key={province.province_number}
+                    href={`/provinces/${province.province_number}`}
+                    className="text-gray-800 dark:text-white"
+                  >
+                    {province.province_name}
+                  </Footer.Link>
+                ))}
               </Footer.LinkGroup>
             </div>
             <div>

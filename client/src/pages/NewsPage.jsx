@@ -32,7 +32,7 @@ export default function NewsPage() {
   }
 
   return (
-    <main className="p-3 flex flex-col max-w-6xl mx-auto min-h-screen">
+    <main className="px-3 pt-3 flex flex-col max-w-6xl mx-auto min-h-screen">
       {/* Image Container */}
       <div className="relative w-full h-96 overflow-hidden">
         <img
@@ -48,7 +48,7 @@ export default function NewsPage() {
       </h1>
 
       {/* Date */}
-      <div className="flex justify-between p-3 border-b border-slate-500 mx-auto w-full text-xs merriweather-light">
+      <div className="flex justify-between p-3 border-b border-slate-500 mx-auto w-full text-xs merriweather-regular">
         <span>Posted on {new Date(news.createdAt).toLocaleDateString()}</span>
       </div>
 
