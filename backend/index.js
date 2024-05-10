@@ -20,7 +20,6 @@ import bcryptjs from "bcryptjs";
 import adminOptions from "./admin.options.js";
 
 import * as url from "url";
-import { appendFile } from "fs";
 
 const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 
