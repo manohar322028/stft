@@ -1,13 +1,16 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
+import dotenv from "dotenv";
 
-server_url = import.meta.env.VITE_SERVER_URL;
+dotenv.config();
+
+const server_url = process.env.VITE_SERVER_URL;
 
 // https://vitejs.dev/config/
 export default defineConfig({
   server: {
     proxy: {
-      "/api": { server_url },
+      "/api": server_url,
     },
   },
   plugins: [react()],

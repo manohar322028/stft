@@ -121,6 +121,13 @@ export default function Header() {
             >
               Downloads
             </NavLink>
+            <NavLink
+              to="/membership"
+              active={location.pathname === "/membership"}
+            >
+              Membership
+            </NavLink>
+
             <div
               onClick={toggleDistrict}
               className={`relative px-6 h-full flex items-center justify-center hover:bg-themeBlue hover:text-gray-200 hover:border-x-[0.5px] hover:border-white transition-colors duration-200 cursor-pointer ${
@@ -221,7 +228,13 @@ export default function Header() {
               >
                 Downloads
               </MNavLink>
-
+              <MNavLink
+                to="/membership"
+                active={location.pathname === "/membership"}
+                onClick={toggleMenu}
+              >
+                Membership
+              </MNavLink>
               <div
                 className={`relative px-6 py-4 h-full w-full flex items-center justify-start text-xl hover:bg-themeGray hover:text-themeBrown hover:bg-opacity-40 transition-colors duration-200 cursor-pointer ${
                   isClickedDistrict

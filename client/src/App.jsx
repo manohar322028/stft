@@ -8,6 +8,7 @@ import Province from "./pages/Province";
 import Downloads from "./pages/Downloads";
 import Header from "./components/Header";
 import ScrollTop from "./components/Scrolltop";
+import Membership from "./pages/Membership";
 
 import { useEffect } from "react";
 
@@ -36,6 +37,7 @@ export default function App() {
             <Route path="/notices" element={<Notices />} />
             <Route path="/news" element={<News />} />
             <Route path="/downloads" element={<Downloads />} />
+            <Route path="/membership" element={<Membership />} />
             <Route path="/news/:postSlug" element={<NewsPage />} />
             <Route path="/provinces/:province" element={<Province />} />
           </Routes>

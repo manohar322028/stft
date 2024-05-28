@@ -90,7 +90,7 @@ export default function Home() {
       {/* news */}
 
       <div className="container mx-auto py-12 px-4">
-        <h2 className="text-3xl font-bold mb-8 ml-4 merriweather-bold">
+        <h2 className="text-3xl font-bold mb-6 ml-4 merriweather-bold">
           Latest News
         </h2>
 
@@ -106,7 +106,7 @@ export default function Home() {
             }}
             {...sliderSettings}
           >
-            {news.slice(0, 5).map((newsItem) => (
+            {news.slice(0, 4).map((newsItem) => (
               <NewsCard key={newsItem._id} {...newsItem} />
             ))}
           </Slider>
