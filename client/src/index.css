@@ -14,6 +14,8 @@ html {
   }
 }
 
+/* fonts */
+
 .merriweather-light {
   font-family: "Merriweather Sans", sans-serif;
   font-weight: 300;
@@ -62,9 +64,52 @@ html {
   font-style: italic;
 }
 
+.mukta-extralight {
+  font-family: "Mukta", sans-serif;
+  font-weight: 200;
+  font-style: normal;
+}
+
+.mukta-light {
+  font-family: "Mukta", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.mukta-regular {
+  font-family: "Mukta", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.mukta-medium {
+  font-family: "Mukta", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.mukta-semibold {
+  font-family: "Mukta", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.mukta-bold {
+  font-family: "Mukta", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.mukta-extrabold {
+  font-family: "Mukta", sans-serif;
+  font-weight: 800;
+  font-style: normal;
+}
+
+/* post contents */
 .post-content p {
   margin-bottom: 0.5rem;
-  font-family: "Merriweather Sans", sans-serif;
+  font-family: "mukta", sans-serif;
   font-size: 1.1rem;
   line-height: 2rem;
   padding-bottom: 0.5rem;
@@ -75,13 +120,13 @@ html {
 .post-content h1 {
   font-size: 1.5rem;
   font-weight: 500;
-  font-family: "Merriweather Sans", sans-serif;
+  font-family: "mukta", sans-serif;
   margin: 1.5rem 0;
 }
 
 .post-content h2 {
   font-size: 1.4rem;
-  font-family: "Merriweather Sans", sans-serif;
+  font-family: "mukta", sans-serif;
   margin: 1.5rem 0;
 }
 
@@ -96,10 +141,16 @@ html {
 
 .post-content blockquote {
   font-style: italic;
-  font-family: "Merriweather Sans", sans-serif;
+  font-family: "mukta", sans-serif;
   font-weight: 500;
   background: #ddca7d;
   border-left: 3px solid #03045e;
   padding: 1rem 2rem;
   margin: 1rem 0;
+}
+
+/* slick */
+.slick-initialized .slick-track {
+  display: flex;
+  align-items: center;
 }

@@ -21,18 +21,18 @@ export default function NewsCard({ image, title, content, slug }) {
       {/* Thumbnail */}
       <img src={imgUrl} alt={title} className="w-full h-48 object-cover" />
       {/* Content */}
-      <div className="p-4 lg:h-48 h-40 mb-2 relative">
+      <div className="p-4 lg:h-48 h-52 mb-2 relative">
         {/* News Title */}
-        <h2 className="text-xl font-bold mb-2 merriweather-bold">{title}</h2>
+        <h2 className="text-xl font-bold mb-2 mukta-bold">{title}</h2>
 
         {/* Truncated News Content */}
-        <p className="text-gray-600 text-sm mb-4 merriweather-light">
+        <p className="text-gray-600 text-base mb-4 mukta-regular">
           {truncatedContent}
         </p>
 
         {/* Read More Button */}
         <Link to={`/news/${slug}`}>
-          <button className="px-4 py-2 bg-themeBlue text-gray-200 text-sm rounded hover:bg-blue-800 absolute bottom-2 merriweather-light">
+          <button className="px-4 py-2 bg-themeBlue text-gray-200 text-base rounded hover:bg-blue-800 absolute bottom-2 mukta-light">
             Read More
           </button>
         </Link>

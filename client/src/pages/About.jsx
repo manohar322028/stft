@@ -66,10 +66,10 @@ export default function About() {
     <>
       <div className="container grid grid-cols-1 md:grid-cols-2 gap-6 mx-auto p-10">
         <div className="text-justify text-themeBrown p-4">
-          <section className="text-2xl merriweather-black pb-4 ">
-            About STFT Nepal
+          <section className="text-2xl mukta-bold pb-4 text-themeBrown">
+            संस्थाको परिचय
           </section>
-          <section className="text-lg merriweather-light pb-4">
+          <section className="text-lg mukta-light pb-4">
             {about && about.content}
           </section>
         </div>
@@ -83,7 +83,7 @@ export default function About() {
         </div>
       </div>
 
-      <div className="text-center text-2xl merriweather-black">Our Team</div>
+      <div className="text-center text-2xl mukta-bold">हाम्रो समाज</div>
 
       <div className="container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mx-auto mb-10 p-10">
         {team &&

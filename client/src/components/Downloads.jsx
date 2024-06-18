@@ -16,13 +16,13 @@ const Downloads = ({ notices }) => {
         <table className="min-w-full bg-white border-collapse border border-gray-500">
           <thead>
             <tr>
-              <th className="border border-gray-500 px-6 py-2 bg-gray-200 text-left merriweather-bold text-sm  uppercase tracking-wider w-3/5">
+              <th className="border border-gray-500 px-6 py-2 bg-gray-200 text-left merriweather-bold text-sm uppercase tracking-wider w-3/5">
                 Description
               </th>
-              <th className="border border-gray-500 px-4 py-2 bg-gray-200 text-left merriweather-bold text-sm   uppercase tracking-wider w-1/5">
+              <th className="border border-gray-500 px-4 py-2 bg-gray-200 text-left merriweather-bold text-sm uppercase tracking-wider w-1/5">
                 Date
               </th>
-              <th className="border border-gray-500 px-4 py-2 bg-gray-200 text-left merriweather-bold text-sm  uppercase tracking-wider w-1/5">
+              <th className="border border-gray-500 px-4 py-2 bg-gray-200 text-left merriweather-bold text-sm uppercase tracking-wider w-1/5">
                 Download
               </th>
             </tr>
@@ -33,11 +33,13 @@ const Downloads = ({ notices }) => {
                 key={index}
                 className={index % 2 === 1 ? "bg-gray-200" : "bg-gray-100"}
               >
-                <td className="border border-gray-500 px-6 py-2 text-sm">
-                  {notice.title}
+                <td className="border border-gray-500 px-6 py-2 text-base">
+                  <span className="mukta-regular">{notice.title}</span>
                 </td>
-                <td className="border border-gray-500 px-4 py-2 text-sm">
-                  {formatDate(notice.updatedAt)}
+                <td className="border border-gray-500 px-4 py-2 text-base">
+                  <span className="mukta-regular">
+                    {formatDate(notice.updatedAt)}
+                  </span>
                 </td>
                 <td className="border border-gray-500 px-4 py-2 text-sm">
                   <a

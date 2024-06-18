@@ -10,9 +10,9 @@ export default function TeamCard({ photo, name, position }) {
           className="w-full h-full object-cover"
         />
       </div>
-      <div>
-        <div className="merriweather-bold">{name}</div>
-        <div className="merriweather-light">{position}</div>
+      <div className="ml-4">
+        <div className="text-lg mukta-bold">{name}</div>
+        <div className="text-base mukta-light">{position}</div>
       </div>
     </div>
   );
