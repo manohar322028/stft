@@ -92,6 +92,7 @@ export default function MemberForm({ isNew }) {
           membership_date: "",
           membership_certificate: null,
         });
+        e.target.reset();
       } else {
         alert("Error registering member. Error: " + res.message);
       }
@@ -273,7 +274,7 @@ export default function MemberForm({ isNew }) {
             className="block text-lg mukta-regular mb-2"
             htmlFor="appointment_type"
           >
-            नियुक्तिको प्रकार
+            नियुक्तिको प्रकार (स्थायी, अस्थायी, राहत, करार, निजी आदि)
           </label>
           <input
             className="w-full p-2"
@@ -319,13 +320,13 @@ export default function MemberForm({ isNew }) {
               className="block text-lg mukta-regular mb-2"
               htmlFor="voucher"
             >
-              पेमेन्ट भाउचर अपलोड गर्नुहोस्
+              पेमेन्ट भाउचर अपलोड गर्नुहोस् (jpg/jpeg/png)
             </label>
             <input
               className="w-full p-2"
               id="voucher"
               type="file"
-              accept="image/*"
+              accept="image/jpg, image/jpeg, image/png"
               onChange={handleFileChange}
               required
             />
@@ -370,13 +371,13 @@ export default function MemberForm({ isNew }) {
                 className="block text-lg mukta-regular mb-2"
                 htmlFor="membership_certificate"
               >
-                सदस्यता प्रमाणपत्र अपलोड गर्नुहोस्
+                सदस्यता प्रमाणपत्र अपलोड गर्नुहोस् (jpg/jpeg/png)
               </label>
               <input
                 className="w-full p-2"
                 id="membership_certificate"
                 type="file"
-                accept="image/*"
+                accept="image/jpg, image/jpeg, image/png"
                 onChange={handleFileChange}
                 required
               />

@@ -1,4 +1,12 @@
 import Member from "../models/member.model.js";
+import componentLoader from "../component-loader.js";
+import {
+  privateLocalProvider,
+  privateProviderOptions,
+} from "../upload-provider.js";
+import uploadFeature from "@adminjs/upload";
+import path from "path";
+import fs from "fs";
 
 export default {
   resource: Member,
@@ -16,26 +24,31 @@ export default {
         position: 2,
       },
       isNew: {
-        isVisible: { list: true, show: true, edit: true, filter: true },
-      },
-      membership_number: {
-        isVisible: { list: true, show: true, edit: true, filter: true },
-      },
-      membership_date: {
         isVisible: { list: false, show: true, edit: true, filter: true },
       },
+      membership_number: {
+        isVisible: { list: false, show: true, edit: true, filter: true },
+      },
+      membership_date: {
+        isVisible: { list: false, show: true, edit: true, filter: false },
+      },
       membership_certificate: {
+        isVisible: { list: false, show: false, edit: false, filter: false },
+      },
+      membership_certificate_file: {
         isVisible: { list: false, show: true, edit: true, filter: false },
       },
       voucher: {
+        isVisible: { list: false, show: false, edit: false, filter: false },
+      },
+      voucher_file: {
         isVisible: { list: false, show: true, edit: true, filter: false },
       },
-
       email: {
-        isVisible: { list: true, show: true, edit: true, filter: true },
+        isVisible: { list: false, show: true, edit: true, filter: true },
       },
       phone_number: {
-        isVisible: { list: true, show: true, edit: true, filter: true },
+        isVisible: { list: false, show: true, edit: true, filter: true },
       },
       district: {
         isVisible: { list: true, show: true, edit: true, filter: true },
@@ -50,20 +63,105 @@ export default {
         isVisible: { list: true, show: true, edit: true, filter: true },
       },
       school_address: {
-        isVisible: { list: true, show: true, edit: true, filter: true },
+        isVisible: { list: true, show: true, edit: true, filter: false },
       },
       school_appointment_date: {
-        isVisible: { list: false, show: true, edit: true, filter: true },
+        isVisible: { list: false, show: true, edit: true, filter: false },
       },
       appointment_type: {
         isVisible: { list: false, show: true, edit: true, filter: false },
       },
       createdAt: {
-        isVisible: { list: true, show: true, edit: false, filter: true },
+        isVisible: { list: false, show: true, edit: false, filter: false },
       },
       updatedAt: {
         isVisible: { list: false, show: true, edit: false, filter: false },
       },
     },
   },
+  features: [
+    uploadFeature({
+      componentLoader: componentLoader,
+      provider: privateLocalProvider,
+      properties: {
+        key: "voucher",
+        bucket: "bucket",
+        file: "voucher_file",
+        filePath: "filePath",
+        filesToDelete: "filesToDelete",
+      },
+      validation: {
+        mimeTypes: ["image/jpeg", "image/png", "image/jpg"],
+      },
+      uploadPath: (record, filename) => {
+        const firstName = record.get("first_name");
+        const lastName = record.get("last_name");
+        const extension = path.extname(filename);
+        let baseFilename = `${firstName}-${lastName}`;
+        let index = 0;
+        let uniqueFilename = `${baseFilename}${extension}`;
+        const folderPath = "./members/uploads/vouchers";
+
+        // Function to check if the file exists synchronously
+        const fileExistsSync = (filePath) => {
+          try {
+            fs.accessSync(filePath, fs.constants.F_OK);
+            return true;
+          } catch (err) {
+            return false;
+          }
+        };
+
+        // Check for file existence and create a unique filename
+        while (fileExistsSync(path.join(folderPath, uniqueFilename))) {
+          index += 1;
+          uniqueFilename = `${baseFilename}-${index}${extension}`;
+        }
+
+        return `vouchers/${uniqueFilename}`;
+      },
+    }),
+
+    uploadFeature({
+      componentLoader: componentLoader,
+      provider: privateLocalProvider,
+      properties: {
+        key: "membership_certificate",
+        bucket: "_bucket",
+        file: "membership_certificate_file",
+        filePath: "_filePath",
+        filesToDelete: "_filesToDelete",
+      },
+      validation: {
+        mimeTypes: ["image/jpg", "image/jpeg", "image/png"],
+      },
+      uploadPath: (record, filename) => {
+        const firstName = record.get("first_name");
+        const lastName = record.get("last_name");
+        const extension = path.extname(filename);
+        let baseFilename = `${firstName}-${lastName}`;
+        let index = 0;
+        let uniqueFilename = `${baseFilename}${extension}`;
+        const folderPath = "./members/uploads/certificates";
+
+        // Function to check if the file exists synchronously
+        const fileExistsSync = (filePath) => {
+          try {
+            fs.accessSync(filePath, fs.constants.F_OK);
+            return true;
+          } catch (err) {
+            return false;
+          }
+        };
+
+        // Check for file existence and create a unique filename
+        while (fileExistsSync(path.join(folderPath, uniqueFilename))) {
+          index += 1;
+          uniqueFilename = `${baseFilename}-${index}${extension}`;
+        }
+
+        return `certificates/${uniqueFilename}`;
+      },
+    }),
+  ],
 };

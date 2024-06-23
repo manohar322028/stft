@@ -38,13 +38,22 @@ class LocalProvider extends BaseProvider {
   }
 }
 
-const providerOptions = {
+const publicProviderOptions = {
   bucket: "./client/public/files",
   opts: {
     baseUrl: "/files",
   },
 };
 
-const localProvider = new LocalProvider(providerOptions);
+const privateProviderOptions = {
+  bucket: "./members/uploads",
+  opts: {
+    baseUrl: "/uploads",
+  },
+};
 
-export { localProvider };
+const localProvider = new LocalProvider(publicProviderOptions);
+
+const privateLocalProvider = new LocalProvider(privateProviderOptions);
+
+export { localProvider, privateLocalProvider, privateProviderOptions };

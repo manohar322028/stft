@@ -9,7 +9,7 @@ const checkAndSaveFile = (file, folder, originalFilename) => {
     const baseName = path.basename(originalFilename, extension);
     let filename = `${baseName}${extension}`;
     let index = 1;
-    const targetFolder = path.join("uploads", folder);
+    const targetFolder = path.join("members", "uploads", folder);
 
     const checkFilename = (filename) => {
       const filepath = path.join(targetFolder, filename);
@@ -93,7 +93,7 @@ export const postMember = async (req, res, next) => {
         "vouchers",
         voucherFilename
       );
-      member.voucher = voucherPath;
+      member.voucher = `vouchers/${voucherFilename}`;
     }
     if (req.files.membership_certificate) {
       const certificateFilename = `${req.body.first_name}-${
@@ -104,7 +104,7 @@ export const postMember = async (req, res, next) => {
         "certificates",
         certificateFilename
       );
-      member.membership_certificate = certificatePath;
+      member.membership_certificate = `certificates/${certificateFilename}`;
     }
 
     // Save the member document with the file paths
