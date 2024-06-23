@@ -6,6 +6,11 @@ const memberSchema = new mongoose.Schema(
       type: Boolean,
     },
 
+    isApproved: {
+      type: Boolean,
+      default: false,
+    },
+
     membership_number: {
       type: String,
       sparse: true,

@@ -7,10 +7,38 @@ import {
 import uploadFeature from "@adminjs/upload";
 import path from "path";
 import fs from "fs";
+import AdminJS from "adminjs";
 
 export default {
   resource: Member,
+
   options: {
+    actions: {
+      approve: {
+        icon: "Check",
+        label: "Approve",
+        actionType: "record",
+        component: false,
+        isVisible: (context) => context.record.get("isApproved") === false,
+        handler: async (request, response, context) => {
+          const { record } = context;
+
+          const member = await Member.findById(record.get("_id"));
+          member.isApproved = true;
+          await member.save();
+        },
+      },
+      reject: {
+        icon: "Close",
+        label: "Reject",
+        actionType: "record",
+        isVisible: (context) => context.record.get("isApproved") === false,
+        handler: async (record) => {
+          console.log("Reject action");
+        },
+      },
+    },
+
     properties: {
       _id: {
         isVisible: { list: false, show: true, edit: false, filter: false },
@@ -25,6 +53,9 @@ export default {
       },
       isNew: {
         isVisible: { list: false, show: true, edit: true, filter: true },
+      },
+      isApproved: {
+        isVisible: { list: true, show: true, edit: true, filter: true },
       },
       membership_number: {
         isVisible: { list: false, show: true, edit: true, filter: true },
