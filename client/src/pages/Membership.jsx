@@ -21,24 +21,24 @@ export default function Membership() {
     <>
       <div className="container flex items-center justify-center gap-4 h-full w-full my-10 mx-auto">
         <div
-          className={`p-4  cursor-pointer hover:bg-blue-700 ${
+          className={`p-4  cursor-pointer mukta-regular hover:bg-blue-700 ${
             isClicked && isNew
               ? "bg-themeBlue  text-gray-100"
               : "bg-themeGray text-themeBrown"
           }`}
           onClick={clickNew}
         >
-          New Member
+          नयाँ सदस्यता
         </div>
         <div
-          className={`p-4  cursor-pointer hover:bg-blue-700 ${
+          className={`p-4  mukta-regular cursor-pointer hover:bg-blue-700 ${
             isClicked && !isNew
               ? "bg-themeBlue  text-gray-100"
               : "bg-themeGray text-themeBrown"
           }`}
           onClick={clickExisting}
         >
-          Existing Member
+          पुरानो सदस्यता
         </div>
       </div>
 

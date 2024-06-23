@@ -7,11 +7,13 @@ export default {
       _id: {
         isVisible: { list: false, show: true, edit: false, filter: false },
       },
-      firstName: {
+      first_name: {
         isVisible: { list: true, show: true, edit: true, filter: true },
+        position: 1,
       },
-      lastName: {
+      last_name: {
         isVisible: { list: true, show: true, edit: true, filter: true },
+        position: 2,
       },
       isNew: {
         isVisible: { list: true, show: true, edit: true, filter: true },

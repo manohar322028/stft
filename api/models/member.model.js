@@ -8,8 +8,10 @@ const memberSchema = new mongoose.Schema(
 
     membership_number: {
       type: String,
+      sparse: true,
       unique: true,
     },
+
     membership_date: {
       type: String,
     },

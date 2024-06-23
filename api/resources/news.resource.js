@@ -49,10 +49,20 @@ export default {
       validation: {
         mimeTypes: ["image/png", "image/jpg", "image/jpeg"],
       },
-      uploadPath: (record, filename) =>
-        `news/${record.get("slug").split(" ").join("-")}.${filename
-          .split(".")
-          .pop()}`,
+      uploadPath: (record, filename) => {
+        // Get the slug and replace spaces with hyphens
+        let slug = record.get("slug");
+
+        // Remove characters that cannot be used in filenames
+        const invalidChars = /[\0\\\/:*?"<>|]/g;
+        slug = slug.replace(invalidChars, "").replace(/\s+/g, "");
+
+        // Get the file extension
+        const extension = filename.split(".").pop();
+
+        // Construct and return the file path
+        return `news/${slug}.${extension}`;
+      },
     }),
   ],
 };

@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 export default function MemberForm({ isNew }) {
   const [formData, setFormData] = useState({
+    isNew: isNew,
     first_name: "",
     last_name: "",
     district: "",
@@ -13,11 +14,35 @@ export default function MemberForm({ isNew }) {
     appointment_type: "",
     phone_number: "",
     email: "",
+    voucher: null,
     membership_number: "",
     membership_date: "",
-    voucher: null,
     membership_certificate: null,
   });
+
+  useEffect(() => {
+    setFormData({
+      isNew: isNew,
+      first_name: "",
+      last_name: "",
+      district: "",
+      municipality: "",
+      ward: "",
+      school_name: "",
+      school_address: "",
+      school_appointment_date: "",
+      appointment_type: "",
+      phone_number: "",
+      email: "",
+      voucher: null,
+      membership_number: "",
+      membership_date: "",
+      membership_certificate: null,
+    });
+  }, [isNew]);
+
+  const appdatepickerRef = useRef(null);
+  const memdatepickerRef = useRef(null);
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -33,9 +58,10 @@ export default function MemberForm({ isNew }) {
     e.preventDefault();
 
     const data = new FormData();
-    data.append("isNew", isNew);
     for (const key in formData) {
-      data.append(key, formData[key]);
+      if (formData[key] !== null) {
+        data.append(key, formData[key]);
+      }
     }
 
     try {
@@ -44,29 +70,86 @@ export default function MemberForm({ isNew }) {
         body: data,
       });
 
+      const res = await response.json();
+
       if (response.ok) {
         alert("Member successfully registered!");
+        setFormData({
+          isNew: isNew,
+          first_name: "",
+          last_name: "",
+          district: "",
+          municipality: "",
+          ward: "",
+          school_name: "",
+          school_address: "",
+          school_appointment_date: "",
+          appointment_type: "",
+          phone_number: "",
+          email: "",
+          voucher: null,
+          membership_number: "",
+          membership_date: "",
+          membership_certificate: null,
+        });
       } else {
-        alert("Error registering member.");
+        alert("Error registering member. Error: " + res.message);
       }
     } catch (err) {
-      console.error("Error:", err);
-      alert("Error creating member.");
+      alert("Error creating member. Error : " + err.message);
     }
   };
 
+  useEffect(() => {
+    const appDatepickerElement = appdatepickerRef.current;
+    const memDatepickerElement = memdatepickerRef.current;
+
+    if (appDatepickerElement) {
+      appDatepickerElement.nepaliDatePicker({
+        ndpYear: true,
+        ndpMonth: true,
+        unicodeDate: true,
+        ndpYearCount: 100,
+        onChange: (date) => {
+          setFormData({
+            ...formData,
+            school_appointment_date: date.bs,
+          });
+        },
+      });
+    }
+
+    if (memDatepickerElement) {
+      memDatepickerElement.nepaliDatePicker({
+        ndpYear: true,
+        ndpMonth: true,
+        unicodeDate: true,
+        ndpYearCount: 100,
+        onChange: (date) => {
+          setFormData({
+            ...formData,
+            membership_date: date.bs,
+          });
+        },
+      });
+    }
+  }, [formData]);
+
   return (
     <div className="container flex flex-col items-center justify-center gap-4 h-full w-full my-10 mx-auto">
-      <h2 className="text-2xl font-bold mb-4">
-        {isNew ? "New Member Form" : "Existing Member Form"}
+      <h2 className="text-2xl font-bold mb-4 mukta-bold">
+        {isNew ? "नयाँ सदस्यता फारम" : "पुरानो सदस्यता फारम"}
       </h2>
       <form
         className="w-full max-w-lg bg-gray-200 text-black p-6 rounded-lg shadow-md"
         onSubmit={handleSubmit}
       >
         <div className="mb-4">
-          <label className="block text-sm font-bold mb-2" htmlFor="first_name">
-            First Name
+          <label
+            className="block text-lg mukta-regular mb-2"
+            htmlFor="first_name"
+          >
+            नाम
           </label>
           <input
             className="w-full p-2"
@@ -74,11 +157,15 @@ export default function MemberForm({ isNew }) {
             type="text"
             value={formData.first_name}
             onChange={handleChange}
+            required
           />
         </div>
         <div className="mb-4">
-          <label className="block text-sm font-bold mb-2" htmlFor="last_name">
-            Last Name
+          <label
+            className="block text-lg mukta-regular mb-2"
+            htmlFor="last_name"
+          >
+            थर
           </label>
           <input
             className="w-full p-2"
@@ -86,15 +173,16 @@ export default function MemberForm({ isNew }) {
             type="text"
             value={formData.last_name}
             onChange={handleChange}
+            required
           />
         </div>
         <div className="mb-4">
-          <label className="block text-sm font-bold mb-2">Address</label>
+          <label className="block text-lg mukta-regular mb-2">ठेगाना</label>
           <label
-            className="block text-sm font-semibold mb-2"
+            className="block text-sm mukta-regular mb-2"
             htmlFor="district"
           >
-            District
+            जिल्ला
           </label>
           <input
             className="w-full p-2 mb-2"
@@ -102,12 +190,13 @@ export default function MemberForm({ isNew }) {
             type="text"
             value={formData.district}
             onChange={handleChange}
+            required
           />
           <label
-            className="block text-sm font-semibold mb-2"
+            className="block text-sm mukta-regular mb-2"
             htmlFor="municipality"
           >
-            Municipality
+            नगरपालिका/गाउँपालिका
           </label>
           <input
             className="w-full p-2 mb-2"
@@ -115,9 +204,11 @@ export default function MemberForm({ isNew }) {
             type="text"
             value={formData.municipality}
             onChange={handleChange}
+            required
           />
-          <label className="block text-sm font-semibold mb-2" htmlFor="ward">
-            Ward No.
+
+          <label className="block text-sm mukta-regular mb-2" htmlFor="ward">
+            वडा नं
           </label>
           <input
             className="w-full p-2"
@@ -125,11 +216,15 @@ export default function MemberForm({ isNew }) {
             type="text"
             value={formData.ward}
             onChange={handleChange}
+            required
           />
         </div>
         <div className="mb-4">
-          <label className="block text-sm font-bold mb-2" htmlFor="school_name">
-            School Name
+          <label
+            className="block text-lg mukta-regular mb-2"
+            htmlFor="school_name"
+          >
+            विद्यालयको नाम
           </label>
           <input
             className="w-full p-2"
@@ -137,14 +232,15 @@ export default function MemberForm({ isNew }) {
             type="text"
             value={formData.school_name}
             onChange={handleChange}
+            required
           />
         </div>
         <div className="mb-4">
           <label
-            className="block text-sm font-bold mb-2"
+            className="block text-lg mukta-regular mb-2"
             htmlFor="school_address"
           >
-            School Address
+            विद्यालयको ठेगाना
           </label>
           <input
             className="w-full p-2"
@@ -152,29 +248,32 @@ export default function MemberForm({ isNew }) {
             type="text"
             value={formData.school_address}
             onChange={handleChange}
+            required
           />
         </div>
         <div className="mb-4">
           <label
-            className="block text-sm font-bold mb-2"
+            className="block text-lg mukta-regular mb-2 "
             htmlFor="school_appointment_date"
           >
-            Date of Appointment
+            नियुक्ति मिति
           </label>
           <input
-            className="w-full p-2"
+            className="w-full p-2 nepali-datepicker"
             id="school_appointment_date"
-            type="date"
+            type="text"
             value={formData.school_appointment_date}
             onChange={handleChange}
+            ref={appdatepickerRef}
+            required
           />
         </div>
         <div className="mb-4">
           <label
-            className="block text-sm font-bold mb-2"
+            className="block text-lg mukta-regular mb-2"
             htmlFor="appointment_type"
           >
-            Type of Appointment
+            नियुक्तिको प्रकार
           </label>
           <input
             className="w-full p-2"
@@ -182,14 +281,15 @@ export default function MemberForm({ isNew }) {
             type="text"
             value={formData.appointment_type}
             onChange={handleChange}
+            required
           />
         </div>
         <div className="mb-4">
           <label
-            className="block text-sm font-bold mb-2"
+            className="block text-lg mukta-regular mb-2"
             htmlFor="phone_number"
           >
-            Phone Number
+            फोन नं
           </label>
           <input
             className="w-full p-2"
@@ -197,11 +297,12 @@ export default function MemberForm({ isNew }) {
             type="text"
             value={formData.phone_number}
             onChange={handleChange}
+            required
           />
         </div>
         <div className="mb-4">
-          <label className="block text-sm font-bold mb-2" htmlFor="email">
-            Email
+          <label className="block text-lg mukta-regular mb-2" htmlFor="email">
+            इमेल
           </label>
           <input
             className="w-full p-2"
@@ -209,28 +310,34 @@ export default function MemberForm({ isNew }) {
             type="email"
             value={formData.email}
             onChange={handleChange}
+            required
           />
         </div>
         {isNew ? (
           <div className="mb-4">
-            <label className="block text-sm font-bold mb-2" htmlFor="voucher">
-              Payment Voucher Upload
+            <label
+              className="block text-lg mukta-regular mb-2"
+              htmlFor="voucher"
+            >
+              पेमेन्ट भाउचर अपलोड गर्नुहोस्
             </label>
             <input
               className="w-full p-2"
               id="voucher"
               type="file"
+              accept="image/*"
               onChange={handleFileChange}
+              required
             />
           </div>
         ) : (
           <>
             <div className="mb-4">
               <label
-                className="block text-sm font-bold mb-2"
+                className="block text-lg mukta-regular mb-2"
                 htmlFor="membership_number"
               >
-                Membership Number
+                सदस्यता नं
               </label>
               <input
                 className="w-full p-2"
@@ -238,35 +345,40 @@ export default function MemberForm({ isNew }) {
                 type="text"
                 value={formData.membership_number}
                 onChange={handleChange}
+                required
               />
             </div>
             <div className="mb-4">
               <label
-                className="block text-sm font-bold mb-2"
+                className="block text-lg mukta-regular mb-2"
                 htmlFor="membership_date"
               >
-                Membership Date
+                सदस्यता मिति
               </label>
               <input
-                className="w-full p-2"
+                className="w-full p-2 nepali-datepicker"
                 id="membership_date"
-                type="date"
+                type="text"
                 value={formData.membership_date}
                 onChange={handleChange}
+                ref={memdatepickerRef}
+                required
               />
             </div>
             <div className="mb-4">
               <label
-                className="block text-sm font-bold mb-2"
+                className="block text-lg mukta-regular mb-2"
                 htmlFor="membership_certificate"
               >
-                Membership Certificate Upload
+                सदस्यता प्रमाणपत्र अपलोड गर्नुहोस्
               </label>
               <input
                 className="w-full p-2"
                 id="membership_certificate"
                 type="file"
+                accept="image/*"
                 onChange={handleFileChange}
+                required
               />
             </div>
           </>
