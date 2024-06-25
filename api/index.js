@@ -26,12 +26,9 @@ const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 
 dotenv.config();
 
-var database;
-
 mongoose
   .connect(process.env.MONGO_URI)
   .then((x) => {
-    database = x;
     console.log("Connected to MongoDB");
   })
   .catch((error) => {

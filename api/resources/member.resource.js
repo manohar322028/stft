@@ -18,7 +18,6 @@ export default {
         component: Components.ApproveMember,
         isVisible: (context) => context.record.get("isApproved") === false,
         handler: async (request, response, context) => {
-          request.method = "post";
           return {
             record: context.record.toJSON(context.currentAdmin),
           };
@@ -28,10 +27,9 @@ export default {
         icon: "Close",
         label: "Reject",
         actionType: "record",
-        component: "D:\\Web-apps\\stft\\api\\ApproveMember.jsx",
+        component: Components.RejectMember,
         isVisible: (context) => context.record.get("isApproved") === false,
         handler: async (request, response, context) => {
-          console.log("Reject action");
           return {
             record: context.record.toJSON(context.currentAdmin),
           };

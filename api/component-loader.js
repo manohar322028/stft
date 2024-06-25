@@ -12,4 +12,6 @@ const Components = {
   RejectMember: componentLoader.add("RejectMember", reject_path),
 };
 
+console.log(componentLoader.getComponents());
+
 export { componentLoader, Components };
