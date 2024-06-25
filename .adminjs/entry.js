@@ -1,4 +1,8 @@
 AdminJS.UserComponents = {}
+import ApproveMember from '../api/ApproveMember'
+AdminJS.UserComponents.ApproveMember = ApproveMember
+import RejectMember from '../api/RejectMember'
+AdminJS.UserComponents.RejectMember = RejectMember
 import UploadEditComponent from '../node_modules/@adminjs/upload/build/features/upload-file/components/UploadEditComponent'
 AdminJS.UserComponents.UploadEditComponent = UploadEditComponent
 import UploadListComponent from '../node_modules/@adminjs/upload/build/features/upload-file/components/UploadListComponent'

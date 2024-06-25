@@ -56,4 +56,4 @@ const localProvider = new LocalProvider(publicProviderOptions);
 
 const privateLocalProvider = new LocalProvider(privateProviderOptions);
 
-export { localProvider, privateLocalProvider, privateProviderOptions };
+export { localProvider, privateLocalProvider };

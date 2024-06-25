@@ -62,6 +62,7 @@ const start = async () => {
   app.use(express.static(path.join(__dirname, "../members")));
 
   const admin = new AdminJS(adminOptions);
+
   const ConnectSession = Connect(session);
   const sessionStore = new ConnectSession({
     uri: process.env.MONGO_URI,
@@ -91,6 +92,8 @@ const start = async () => {
 
   app.use(admin.options.rootPath, adminRouter);
 
+  admin.watch();
+
   app.listen(3000, () => {
     console.log("Server is running on http://localhost:3000");
     console.log(
@@ -119,7 +122,6 @@ const start = async () => {
       message,
     });
   });
-  admin.watch();
 };
 
 start();

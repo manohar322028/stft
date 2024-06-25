@@ -1,13 +1,10 @@
 import Member from "../models/member.model.js";
-import componentLoader from "../component-loader.js";
-import {
-  privateLocalProvider,
-  privateProviderOptions,
-} from "../upload-provider.js";
+import { componentLoader, Components } from "../component-loader.js";
+
+import { privateLocalProvider } from "../upload-provider.js";
 import uploadFeature from "@adminjs/upload";
 import path from "path";
 import fs from "fs";
-import AdminJS from "adminjs";
 
 export default {
   resource: Member,
@@ -18,23 +15,26 @@ export default {
         icon: "Check",
         label: "Approve",
         actionType: "record",
-        component: false,
+        component: Components.ApproveMember,
         isVisible: (context) => context.record.get("isApproved") === false,
         handler: async (request, response, context) => {
-          const { record } = context;
-
-          const member = await Member.findById(record.get("_id"));
-          member.isApproved = true;
-          await member.save();
+          request.method = "post";
+          return {
+            record: context.record.toJSON(context.currentAdmin),
+          };
         },
       },
       reject: {
         icon: "Close",
         label: "Reject",
         actionType: "record",
+        component: "D:\\Web-apps\\stft\\api\\ApproveMember.jsx",
         isVisible: (context) => context.record.get("isApproved") === false,
-        handler: async (record) => {
+        handler: async (request, response, context) => {
           console.log("Reject action");
+          return {
+            record: context.record.toJSON(context.currentAdmin),
+          };
         },
       },
     },

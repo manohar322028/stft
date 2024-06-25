@@ -1,6 +1,6 @@
 import Team from "../models/team.model.js";
 import { localProvider } from "../upload-provider.js";
-import componentLoader from "../component-loader.js";
+import { componentLoader } from "../component-loader.js";
 import uploadFeature from "@adminjs/upload";
 
 export default {
