@@ -79,7 +79,10 @@ export default function Hero() {
           </div>
         </div>
         <div className="flex flex-col items-center md:flex-row md:justify-end mt-8">
-          <button className="px-6 py-2 text-gray-100 bg-themeBlue rounded hover:bg-blue-700 mt-2 md:w-1/5 ">
+          <button
+            className="px-6 py-2 text-gray-100 bg-themeBlue rounded hover:bg-blue-700 mt-2 md:w-1/5 "
+            onClick={changeRoute("/contactus")}
+          >
             Contact Us
           </button>
           <button

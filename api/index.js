@@ -8,6 +8,7 @@ import downloadRoutes from "./routes/download.route.js";
 import aboutRoutes from "./routes/about.route.js";
 import teamRoutes from "./routes/team.route.js";
 import memberRoutes from "./routes/member.route.js";
+import messageRoutes from "./routes/message.route.js";
 import AdminJS from "adminjs";
 import AdminJSExpress from "@adminjs/express";
 import * as AdminJSMongoose from "@adminjs/mongoose";
@@ -105,6 +106,7 @@ const start = async () => {
   app.use("/api/abouts", aboutRoutes);
   app.use("/api/teams", teamRoutes);
   app.use("/api/members", memberRoutes);
+  app.use("/api/messages", messageRoutes);
 
   app.get("/", (req, res) => {
     res.send("Go to /admin for adminpanel");

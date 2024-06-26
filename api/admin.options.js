@@ -4,10 +4,11 @@ import Download from "./resources/download.resource.js";
 import About from "./resources/about.resource.js";
 import Team from "./resources/team.resource.js";
 import Member from "./resources/member.resource.js";
+import Message from "./resources/message.resource.js";
 import { componentLoader } from "./component-loader.js";
 
 const adminOptions = {
-  resources: [News, Notice, Download, About, Team, Member],
+  resources: [News, Notice, Download, About, Team, Member, Message],
   componentLoader: componentLoader,
   branding: {
     companyName: "Admin Panel",
