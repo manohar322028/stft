@@ -19,6 +19,7 @@ export default function Header() {
       await fetch("/api/abouts/names")
         .then((res) => res.json())
         .then((data) => {
+          data.sort((a, b) => a.province_number - b.province_number);
           setProvinces(data);
         });
     };
@@ -153,6 +154,9 @@ export default function Header() {
                 ))}
               </div>
             </div>
+            <NavLink to="/gallery" active={location.pathname === "/gallery"}>
+              Gallery
+            </NavLink>
           </div>
 
           {/* for mobile */}
@@ -265,6 +269,14 @@ export default function Header() {
                   ))}
                 </div>
               </div>
+
+              <MNavLink
+                to="/gallery"
+                active={location.pathname === "/gallery"}
+                onClick={toggleMenu}
+              >
+                Gallery
+              </MNavLink>
             </div>
           </div>
         </div>

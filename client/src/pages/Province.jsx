@@ -33,35 +33,55 @@ export default function About() {
   const teamSort = (team) => {
     var rest = [];
     var chairman;
+    var seniorViceChairman;
     var viceChairman;
+    var GeneralSecretary;
     var Secretary;
     var AssistantSecretary;
     var Treasurer;
+    var AssistantTreasurer;
+    var TechnicalCoordinator;
     team.forEach((member) => {
       if (member.position === "Chairman") {
         chairman = member;
+      } else if (member.position === "Senior Vice Chairman") {
+        seniorViceChairman = member;
       } else if (member.position === "Vice Chairman") {
         viceChairman = member;
+      } else if (member.position === "General Secretary") {
+        GeneralSecretary = member;
       } else if (member.position === "Secretary") {
         Secretary = member;
       } else if (member.position === "Assistant Secretary") {
         AssistantSecretary = member;
       } else if (member.position === "Treasurer") {
         Treasurer = member;
+      } else if (member.position === "Assistant Treasurer") {
+        AssistantTreasurer = member;
+      } else if (member.position === "Technical Co-ordinator") {
+        TechnicalCoordinator = member;
       } else {
         rest.push(member);
       }
     });
 
     rest = rest.sort((a, b) => a.name - b.name);
-    return [
+
+    const list = [
       chairman,
+      seniorViceChairman,
       viceChairman,
+      GeneralSecretary,
       Secretary,
       AssistantSecretary,
       Treasurer,
+      AssistantTreasurer,
+      TechnicalCoordinator,
       ...rest,
     ];
+
+    const sorted = list.filter((item) => item !== undefined && item !== null);
+    return sorted;
   };
 
   return (

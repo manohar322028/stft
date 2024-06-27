@@ -21,8 +21,16 @@ export default {
             label: "Chairman",
           },
           {
+            value: "senior Vice Chairman",
+            label: "Senior Vice Chairman",
+          },
+          {
             value: "Vice Chairman",
             label: "Vice Chairman",
+          },
+          {
+            value: "General Secretary",
+            label: "General Secretary",
           },
           {
             value: "Secretary",
@@ -35,6 +43,14 @@ export default {
           {
             value: "Treasurer",
             label: "Treasurer",
+          },
+          {
+            value: "Assistant Treasurer",
+            label: "Assistant Treasurer",
+          },
+          {
+            value: "Technical Co-ordinator",
+            label: "Technical Co-ordinator",
           },
           {
             value: "Member",

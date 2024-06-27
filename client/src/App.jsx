@@ -10,6 +10,7 @@ import Header from "./components/Header";
 import ScrollTop from "./components/Scrolltop";
 import Membership from "./pages/Membership";
 import ContactUs from "./pages/ContactUs";
+import Gallery from "./pages/Gallery";
 
 import { useEffect } from "react";
 
@@ -42,6 +43,7 @@ export default function App() {
             <Route path="/news/:postSlug" element={<NewsPage />} />
             <Route path="/provinces/:province" element={<Province />} />
             <Route path="/contactus" element={<ContactUs />} />
+            <Route path="/gallery" element={<Gallery />} />
           </Routes>
         </div>
         <ScrollTop />
