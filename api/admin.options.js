@@ -16,7 +16,8 @@ const adminOptions = {
     logo: false,
     withMadeWithLove: false,
   },
-  logoutPath: "/admin/logout",
+  logoutPath: "/logout",
+
   locale: {
     translations: {
       en: {
@@ -49,7 +50,7 @@ const adminOptions = {
     },
   },
 
-  rootPath: "/admin",
+  rootPath: "/",
 };
 
 export default adminOptions;
