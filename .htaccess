@@ -1,0 +1,22 @@
+DirectoryIndex disabled
+RewriteEngine On
+RewriteRule ^$ http://127.0.0.1:30000/ [P,L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ http://127.0.0.1:30000/$1 [P,L]
+
+# DO NOT REMOVE. CLOUDLINUX PASSENGER CONFIGURATION BEGIN
+PassengerAppRoot "/home/stftnep1/stft"
+PassengerBaseURI "/"
+PassengerNodejs "/home/stftnep1/nodevenv/stft/20/bin/node"
+PassengerAppType node
+PassengerStartupFile api/index.js
+# DO NOT REMOVE. CLOUDLINUX PASSENGER CONFIGURATION END
+# DO NOT REMOVE OR MODIFY. CLOUDLINUX ENV VARS CONFIGURATION BEGIN
+<IfModule Litespeed>
+SetEnv MONGO_URI mongodb+srv://manohardahal40:hesoyamdahal@stft.4hecfge.mongodb.net/stft?retryWrites=true&w=majority&appName=stft
+SetEnv JWT_SECRET harihardahal
+SetEnv SESSION_SECRET sessionsecret
+SetEnv PORT 30000
+</IfModule>
+# DO NOT REMOVE OR MODIFY. CLOUDLINUX ENV VARS CONFIGURATION END
