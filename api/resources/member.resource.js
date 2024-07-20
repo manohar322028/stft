@@ -37,6 +37,11 @@ export default {
       },
     },
 
+    sort: {
+      sortBy: "updatedAt",
+      direction: "desc",
+    },
+
     properties: {
       _id: {
         isVisible: { list: false, show: true, edit: false, filter: false },
