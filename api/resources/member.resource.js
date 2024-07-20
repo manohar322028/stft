@@ -128,10 +128,10 @@ export default {
         mimeTypes: ["image/jpeg", "image/png", "image/jpg"],
       },
       uploadPath: (record, filename) => {
-        const id = record.get("_id");
-
+        const firstName = record.get("first_name");
+        const lastName = record.get("last_name");
         const extension = path.extname(filename);
-        let baseFilename = `${id}`;
+        let baseFilename = `${firstName}-${lastName}`;
         let index = 0;
         let uniqueFilename = `${baseFilename}${extension}`;
         const folderPath = "./members/uploads/vouchers";
@@ -170,9 +170,10 @@ export default {
         mimeTypes: ["image/jpg", "image/jpeg", "image/png"],
       },
       uploadPath: (record, filename) => {
-        const id = record.get("_id");
+        const firstName = record.get("first_name");
+        const lastName = record.get("last_name");
         const extension = path.extname(filename);
-        let baseFilename = `${id}`;
+        let baseFilename = `${firstName}-${lastName}`;
         let index = 0;
         let uniqueFilename = `${baseFilename}${extension}`;
         const folderPath = "./members/uploads/certificates";

@@ -125,9 +125,10 @@ export default {
         mimeTypes: ["image/png", "image/jpg", "image/jpeg"],
       },
       uploadPath: (record, filename) =>
-        `Team/Province - ${record.get("province_number")}/${record.get(
-          "_id"
-        )}.${filename.split(".").pop()}`,
+        `Team/Province - ${record.get("province_number")}/${record
+          .get("name")
+          .split(" ")
+          .join("-")}.${filename.split(".").pop()}`,
     }),
   ],
 };
