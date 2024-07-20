@@ -85,9 +85,9 @@ export const postMember = async (req, res, next) => {
 
     // Save the uploaded files to the appropriate directories
     if (req.files.voucher) {
-      const voucherFilename = `${req.body.first_name}-${
-        req.body.last_name
-      }${path.extname(req.files.voucher[0].originalname)}`;
+      const voucherFilename = `${member._id}${path.extname(
+        req.files.voucher[0].originalname
+      )}`;
       const voucherPath = await checkAndSaveFile(
         req.files.voucher[0],
         "vouchers",
@@ -96,9 +96,9 @@ export const postMember = async (req, res, next) => {
       member.voucher = `vouchers/${voucherFilename}`;
     }
     if (req.files.membership_certificate) {
-      const certificateFilename = `${req.body.first_name}-${
-        req.body.last_name
-      }${path.extname(req.files.membership_certificate[0].originalname)}`;
+      const certificateFilename = `${member._id}${path.extname(
+        req.files.membership_certificate[0].originalname
+      )}`;
       const certificatePath = await checkAndSaveFile(
         req.files.membership_certificate[0],
         "certificates",
