@@ -27,6 +27,8 @@ const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 
 dotenv.config();
 
+const port = process.env.PORT;
+
 mongoose
   .connect(process.env.MONGO_URI)
   .then((x) => {
@@ -92,10 +94,10 @@ const start = async () => {
 
   admin.watch();
 
-  app.listen(3000, () => {
-    console.log("Server is running on http://localhost:3000");
+  app.listen(port, () => {
+    console.log("Server is running on http://localhost:" + port);
     console.log(
-      `AdminJS started on http://localhost:3000${admin.options.rootPath}`
+      `AdminJS started on http://localhost:${port}${admin.options.rootPath}`
     );
   });
 
