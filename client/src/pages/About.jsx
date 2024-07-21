@@ -2,13 +2,15 @@ import React from "react";
 import TeamCard from "../components/TeamCard";
 import { useState, useEffect } from "react";
 
+const server_url = import.meta.env.VITE_SERVER_URL;
+
 export default function About() {
   const [about, setAbout] = useState(null);
   const [team, setTeam] = useState(null);
 
   useEffect(() => {
     const fetchAbout = async () => {
-      await fetch("/api/abouts/0")
+      await fetch(server_url + "/api/abouts/0")
         .then((res) => res.json())
         .then((data) => {
           setAbout(data);
@@ -19,7 +21,7 @@ export default function About() {
 
   useEffect(() => {
     const fetchTeam = async () => {
-      await fetch("/api/teams/0")
+      await fetch(server_url + "/api/teams/0")
         .then((res) => res.json())
         .then((data) => {
           setTeam(data);

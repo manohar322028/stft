@@ -10,6 +10,8 @@ import { useState, useEffect, useRef } from "react";
 import { FaChevronLeft, FaChevronRight, FaCircle } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
+const server_url = import.meta.env.VITE_SERVER_URL;
+
 export default function Home() {
   const navigate = useNavigate();
   const [news, setNews] = useState([]);
@@ -29,7 +31,7 @@ export default function Home() {
   };
   useEffect(() => {
     const fetchNews = async () => {
-      await fetch("/api/news")
+      await fetch(server_url + "/api/news")
         .then((res) => res.json())
         .then((data) => {
           data = data.sort(
@@ -43,7 +45,7 @@ export default function Home() {
 
   useEffect(() => {
     const fetchNotices = async () => {
-      await fetch("/api/notices")
+      await fetch(server_url + "/api/notices")
         .then((res) => res.json())
         .then((data) => {
           data = data.sort(
@@ -57,7 +59,7 @@ export default function Home() {
 
   useEffect(() => {
     const fetchDownloads = async () => {
-      await fetch("/api/downloads")
+      await fetch(server_url + "/api/downloads")
         .then((res) => res.json())
         .then((data) => {
           data = data.sort(

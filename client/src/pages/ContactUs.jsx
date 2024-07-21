@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
 import { BsTwitterX } from "react-icons/bs";
 
+const server_url = import.meta.env.VITE_SERVER_URL;
+
 const ContactUs = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -20,7 +22,7 @@ const ContactUs = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch("/api/messages", {
+    const response = await fetch(server_url + "/api/messages", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

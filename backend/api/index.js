@@ -17,6 +17,8 @@ import session from "express-session";
 import User from "./models/user.model.js";
 import path from "path";
 
+import cors from "cors";
+
 import bcryptjs from "bcryptjs";
 
 import adminOptions from "./admin.options.js";
@@ -58,6 +60,7 @@ AdminJS.registerAdapter({
 const start = async () => {
   const app = express();
   app.use(express.json());
+  app.use(cors());
   app.use(express.static(path.join(__dirname, "../../client/public")));
   app.use(express.static(path.join(__dirname, "../members")));
 
@@ -109,6 +112,10 @@ const start = async () => {
   app.use("/api/teams", teamRoutes);
   app.use("/api/members", memberRoutes);
   app.use("/api/messages", messageRoutes);
+
+  app.get("/", (req, res) => {
+    res.send("go to /admin for admin panel");
+  });
 
   app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500;

@@ -3,6 +3,8 @@ import TeamCard from "../components/TeamCard";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
+const server_url = import.meta.env.VITE_SERVER_URL;
+
 export default function About() {
   const [about, setAbout] = useState(null);
   const [team, setTeam] = useState(null);
@@ -10,7 +12,7 @@ export default function About() {
 
   useEffect(() => {
     const fetchAbout = async () => {
-      await fetch(`/api/abouts/${province}`)
+      await fetch(server_url + `/api/abouts/${province}`)
         .then((res) => res.json())
         .then((data) => {
           setAbout(data);
@@ -21,7 +23,7 @@ export default function About() {
 
   useEffect(() => {
     const fetchTeam = async () => {
-      await fetch(`/api/teams/${province}`)
+      await fetch(server_url + `/api/teams/${province}`)
         .then((res) => res.json())
         .then((data) => {
           setTeam(data);

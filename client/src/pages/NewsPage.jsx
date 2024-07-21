@@ -2,6 +2,8 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
+const server_url = import.meta.env.VITE_SERVER_URL;
+
 export default function NewsPage() {
   const [loading, setLoading] = useState(true);
   const [news, setNews] = useState({});
@@ -11,7 +13,7 @@ export default function NewsPage() {
     const fetchNews = async () => {
       try {
         setLoading(true);
-        const res = await fetch(`/api/news/${postSlug}`);
+        const res = await fetch(server_url + `/api/news/${postSlug}`);
         const data = await res.json();
 
         setNews(data);

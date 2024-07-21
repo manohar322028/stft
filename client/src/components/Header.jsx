@@ -7,6 +7,8 @@ import { MdEmail } from "react-icons/md";
 import { MdPhone } from "react-icons/md";
 import { BsFacebook, BsInstagram, BsTwitterX } from "react-icons/bs";
 
+const server_url = import.meta.env.VITE_SERVER_URL;
+
 export default function Header() {
   const location = useLocation();
   const [isClicked, setIsClicked] = useState(false);
@@ -16,7 +18,7 @@ export default function Header() {
 
   useEffect(() => {
     const fetchProvinces = async () => {
-      await fetch("/api/abouts/names")
+      await fetch(server_url + "/api/abouts/names")
         .then((res) => res.json())
         .then((data) => {
           data.sort((a, b) => a.province_number - b.province_number);

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Alert, Spinner } from "flowbite-react";
 
+const server_url = import.meta.env.VITE_SERVER_URL;
+
 function LoginPage() {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
@@ -14,7 +16,7 @@ function LoginPage() {
     try {
       setLoading(true);
 
-      await fetch("/api/auth/login", {
+      await fetch(server_url + "/api/auth/login", {
         method: "POST",
         body: JSON.stringify({ username, password }),
         headers: { "Content-Type": "application/json" },

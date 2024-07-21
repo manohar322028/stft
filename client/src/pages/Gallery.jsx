@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import PhotoCard from "../components/PhotoCard";
 import Pagination from "../components/Pagination";
 
+const server_url = import.meta.env.VITE_SERVER_URL;
+
 const Gallery = () => {
   const [news, setNews] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -9,7 +11,7 @@ const Gallery = () => {
 
   useEffect(() => {
     const fetchNews = async () => {
-      await fetch("/api/news")
+      await fetch(server_url + "/api/news")
         .then((res) => res.json())
         .then((data) => {
           data = data.sort(

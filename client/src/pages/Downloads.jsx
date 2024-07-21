@@ -3,6 +3,8 @@ import Downloads from "../components/Downloads";
 import { useState, useEffect } from "react";
 import Pagination from "../components/Pagination";
 
+const server_url = import.meta.env.VITE_SERVER_URL;
+
 export default function Notices() {
   const [notices, setNotices] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -10,7 +12,7 @@ export default function Notices() {
 
   useEffect(() => {
     const fetchNotices = async () => {
-      await fetch("/api/downloads")
+      await fetch(server_url + "/api/downloads")
         .then((res) => res.json())
         .then((data) => {
           data = data.sort(

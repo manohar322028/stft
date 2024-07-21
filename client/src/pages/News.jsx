@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import NewsCard from "../components/NewsCard";
 import Pagination from "../components/Pagination";
 
+const server_url = import.meta.env.VITE_SERVER_URL;
 const NewsPage = () => {
   const [news, setNews] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -9,7 +10,7 @@ const NewsPage = () => {
 
   useEffect(() => {
     const fetchNews = async () => {
-      await fetch("/api/news")
+      await fetch(server_url + "/api/news")
         .then((res) => res.json())
         .then((data) => {
           data = data.sort(

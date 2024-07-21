@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 
+const server_url = import.meta.env.VITE_SERVER_URL;
+
 export default function MemberForm({ isNew }) {
   const [formData, setFormData] = useState({
     isNew: isNew,
@@ -65,7 +67,7 @@ export default function MemberForm({ isNew }) {
     }
 
     try {
-      const response = await fetch("/api/members", {
+      const response = await fetch(server_url + "/api/members", {
         method: "POST",
         body: data,
       });

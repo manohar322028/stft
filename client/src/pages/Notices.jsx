@@ -3,6 +3,8 @@ import NoticeHome from "../components/NoticeHome";
 import { useState, useEffect } from "react";
 import Pagination from "../components/Pagination";
 
+const server_url = import.meta.env.VITE_SERVER_URL;
+
 export default function Notices() {
   const [notices, setNotices] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -10,7 +12,7 @@ export default function Notices() {
 
   useEffect(() => {
     const fetchNotices = async () => {
-      await fetch("/api/notices")
+      await fetch(server_url + "/api/notices")
         .then((res) => res.json())
         .then((data) => {
           data = data.sort(

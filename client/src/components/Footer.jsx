@@ -3,12 +3,14 @@ import { Link } from "react-router-dom";
 import { BsFacebook, BsInstagram, BsTwitterX } from "react-icons/bs";
 import { useState, useEffect } from "react";
 
+const server_url = import.meta.env.VITE_SERVER_URL;
+
 export default function FooterCom() {
   const [provinces, setProvinces] = useState([]);
 
   useEffect(() => {
     const fetchProvinces = async () => {
-      await fetch("/api/abouts/names")
+      await fetch(server_url + "/api/abouts/names")
         .then((res) => res.json())
         .then((data) => {
           setProvinces(data);
