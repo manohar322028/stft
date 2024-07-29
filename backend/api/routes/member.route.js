@@ -1,5 +1,5 @@
 import express from "express";
-import { postMember } from "../controllers/member.controller.js";
+import { postMember, updateMember } from "../controllers/member.controller.js";
 
 import { upload } from "../utils/uploader.js";
 
@@ -12,6 +12,11 @@ router.post(
     { name: "membership_certificate", maxCount: 1 },
   ]),
   postMember
+);
+router.put(
+  "/:id",
+  upload.fields([{ name: "membership_certificate", maxCount: 1 }]),
+  updateMember
 );
 
 export default router;

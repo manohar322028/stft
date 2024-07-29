@@ -5,10 +5,11 @@ import About from "./resources/about.resource.js";
 import Team from "./resources/team.resource.js";
 import Member from "./resources/member.resource.js";
 import Message from "./resources/message.resource.js";
+import Gallery from "./resources/gallery.resource.js";
 import { componentLoader } from "./component-loader.js";
 
 const adminOptions = {
-  resources: [News, Notice, Download, About, Team, Member, Message],
+  resources: [News, Notice, Download, About, Team, Member, Message, Gallery],
   componentLoader: componentLoader,
   branding: {
     companyName: "Admin Panel",

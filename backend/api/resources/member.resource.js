@@ -1,5 +1,6 @@
 import Member from "../models/member.model.js";
 import { componentLoader, Components } from "../component-loader.js";
+import importExportFeature from "@adminjs/import-export";
 
 import { privateLocalProvider } from "../upload-provider.js";
 import uploadFeature from "@adminjs/upload";
@@ -114,6 +115,7 @@ export default {
     },
   },
   features: [
+    importExportFeature({ componentLoader }),
     uploadFeature({
       componentLoader: componentLoader,
       provider: privateLocalProvider,
@@ -167,7 +169,7 @@ export default {
         filesToDelete: "_filesToDelete",
       },
       validation: {
-        mimeTypes: ["image/jpg", "image/jpeg", "image/png"],
+        mimeTypes: ["image/jpg", "image/jpeg", "image/png", "application/pdf"],
       },
       uploadPath: (record, filename) => {
         const firstName = record.get("first_name");

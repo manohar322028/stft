@@ -2,6 +2,10 @@ import React from "react";
 import NoticeHome from "../components/NoticeHome";
 import { useState, useEffect } from "react";
 import Pagination from "../components/Pagination";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
+AOS.init();
 
 const server_url = import.meta.env.VITE_SERVER_URL;
 
@@ -33,7 +37,15 @@ export default function Notices() {
 
   return (
     <>
-      <div className="container mx-auto px-4 pb-4 mt-10">
+      <div
+        className="container mx-auto px-4 pb-4 mt-10"
+        data-aos="fade-up"
+        data-aos-delay="50"
+        data-aos-duration="1000"
+        data-aos-easing="ease-in-out"
+        data-aos-once="false"
+        data-aos-anchor-placement="top-center"
+      >
         <h2 className="text-3xl font-bold mb-6 ml-4">Notices</h2>
         <NoticeHome notices={currentNotice} />
       </div>

@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "@adminjs/express": "^6.1.0",
+    "@adminjs/import-export": "^3.0.0",
     "@adminjs/mongoose": "^4.1.0",
     "@adminjs/upload": "^4.0.2",
     "adminjs": "^7.8.1",

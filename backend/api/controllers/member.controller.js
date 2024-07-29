@@ -116,3 +116,77 @@ export const postMember = async (req, res, next) => {
     return next(errorHandler(500, "Error creating member"));
   }
 };
+
+export const updateMember = async (req, res, next) => {
+  try {
+    const memberId = req.params.id;
+    const member = await Member.findById(memberId);
+    if (!member) {
+      return next(errorHandler(404, "Member not found"));
+    }
+
+    // Check if the updated email already exists
+    if (req.body.email && req.body.email !== member.email) {
+      const existingMember = await Member.findOne({ email: req.body.email });
+      if (existingMember) {
+        return next(
+          errorHandler(400, "Member with this email is already registered.")
+        );
+      }
+    }
+
+    // Check if the updated membership number already exists
+    if (
+      req.body.membership_number &&
+      req.body.membership_number !== member.membership_number
+    ) {
+      const existingMemberNumber = await Member.findOne({
+        membership_number: req.body.membership_number,
+      });
+      if (existingMemberNumber) {
+        return next(
+          errorHandler(
+            400,
+            "Member with this membership number is already registered."
+          )
+        );
+      }
+    }
+
+    // Filter out fields containing null and blank values
+    const filteredData = Object.entries(req.body).reduce(
+      (acc, [key, value]) => {
+        if (value !== null && value !== "") {
+          acc[key] = value;
+        }
+        return acc;
+      },
+      {}
+    );
+
+    // Update the member with the filtered data
+    Object.assign(member, filteredData);
+
+    // Save the uploaded files to the appropriate directories
+
+    if (req.files.membership_certificate) {
+      const certificateFilename = `${member.first_name}-${
+        member.last_name
+      }${path.extname(req.files.membership_certificate[0].originalname)}`;
+      const certificatePath = await checkAndSaveFile(
+        req.files.membership_certificate[0],
+        "certificates",
+        certificateFilename
+      );
+      member.membership_certificate = `certificates/${certificateFilename}`;
+    }
+
+    // Save the updated member document with the file paths
+    const savedMember = await member.save();
+
+    res.status(200).json(savedMember);
+  } catch (err) {
+    console.log(err);
+    return next(errorHandler(500, "Error updating member"));
+  }
+};

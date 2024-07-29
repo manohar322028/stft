@@ -3,10 +3,17 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 
-const images = ["hero1.jpeg", "hero2.jpeg", "hero3.jpeg", "hero4.jpeg"];
+import AOS from "aos";
+import "aos/dist/aos.css";
+
+AOS.init();
+
+const server_url = import.meta.env.VITE_SERVER_URL;
 
 export default function Hero() {
+  const [hero, setHero] = useState([]);
   const settings = {
     dots: false,
     arrows: false,
@@ -26,6 +33,20 @@ export default function Hero() {
     navigate(route);
   };
 
+  useEffect(() => {
+    const fetchHero = async () => {
+      await fetch(server_url + "/api/gallery/featured")
+        .then((res) => res.json())
+        .then((data) => {
+          data = data.sort(
+            (a, b) => new Date(b.updatedAt) - new Date(a.updatedAt)
+          );
+          setHero(data);
+        });
+    };
+    fetchHero();
+  }, []);
+
   return (
     <div
       className="bg-cover bg-center py-8 shadow-md shadow-gray-700/20"
@@ -35,6 +56,13 @@ export default function Hero() {
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
+      data-aos="fade-in"
+      data-aos-duration="1000"
+      data-aos-delay="50"
+      data-aos-easing="ease-in-out"
+      data-aos-mirror="true"
+      data-aos-once="false"
+      data-aos-anchor-placement="top-center"
     >
       <div className="max-w-7xl mx-auto px-4">
         {/* Responsive layout for tablets and larger screens */}
@@ -42,14 +70,14 @@ export default function Hero() {
           {/* Slider Section */}
           <div className="w-full h-full overflow-hidden">
             <Slider {...settings}>
-              {images.map((image, index) => (
+              {hero.map((image) => (
                 <div
-                  key={index}
+                  key={image._id}
                   className="flex justify-center items-center h-full"
                 >
                   <img
-                    src={image}
-                    alt={`Hero ${index + 1}`}
+                    src={`/files/${image.image}`}
+                    alt={image.caption}
                     className="object-contain w-full h-full"
                   />
                 </div>

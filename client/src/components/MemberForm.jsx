@@ -373,13 +373,13 @@ export default function MemberForm({ isNew }) {
                 className="block text-lg mukta-regular mb-2"
                 htmlFor="membership_certificate"
               >
-                सदस्यता प्रमाणपत्र अपलोड गर्नुहोस् (jpg/jpeg/png)
+                सदस्यता प्रमाणपत्र अपलोड गर्नुहोस् (jpg/jpeg/png/pdf)
               </label>
               <input
                 className="w-full p-2"
                 id="membership_certificate"
                 type="file"
-                accept="image/jpg, image/jpeg, image/png"
+                accept="image/jpg, image/jpeg, image/png, application/pdf"
                 onChange={handleFileChange}
                 required
               />

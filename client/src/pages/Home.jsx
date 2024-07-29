@@ -10,10 +10,16 @@ import { useState, useEffect, useRef } from "react";
 import { FaChevronLeft, FaChevronRight, FaCircle } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
+import AOS from "aos";
+import "aos/dist/aos.css";
+
+AOS.init();
+
 const server_url = import.meta.env.VITE_SERVER_URL;
 
 export default function Home() {
   const navigate = useNavigate();
+
   const [news, setNews] = useState([]);
   const [notices, setNotices] = useState([]);
   const [downloads, setDownloads] = useState([]);
@@ -91,7 +97,14 @@ export default function Home() {
 
       {/* news */}
 
-      <div className="container mx-auto py-12 px-4">
+      <div
+        className="container mx-auto py-12 px-4"
+        data-aos="fade-up"
+        data-aos-duration="1000"
+        data-aos-easing="ease-in-out"
+        data-aos-once="false"
+        data-aos-anchor-placement="top-center"
+      >
         <h2 className="text-3xl font-bold mb-6 ml-4 merriweather-bold">
           Latest News
         </h2>
@@ -147,7 +160,15 @@ export default function Home() {
       </div>
 
       {/* notices */}
-      <div className="container mx-auto px-4 pb-4">
+      <div
+        className="container mx-auto px-4 pb-4"
+        data-aos="fade-up"
+        data-aos-delay="500"
+        data-aos-duration="1000"
+        data-aos-easing="ease-in-out"
+        data-aos-once="false"
+        data-aos-anchor-placement="top-center"
+      >
         <h2 className="text-3xl font-bold mb-6 ml-4 merriweather-bold">
           Latest Notices
         </h2>
@@ -161,7 +182,15 @@ export default function Home() {
       </div>
 
       {/* downloads */}
-      <div className="container mx-auto px-4 pb-4">
+      <div
+        className="container mx-auto px-4 pb-4"
+        data-aos="fade-up"
+        data-aos-delay="500"
+        data-aos-duration="1000"
+        data-aos-easing="ease-in-out"
+        data-aos-once="false"
+        data-aos-anchor-placement="top-center"
+      >
         <h2 className="text-3xl font-bold mb-6 ml-4 merriweather-bold">
           Downloads
         </h2>

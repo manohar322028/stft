@@ -28,7 +28,7 @@ const ScrollToTop = () => {
 
 export default function App() {
   return (
-    <div className="flex flex-col min-h-screen overflow-x-hidden">
+    <div className="flex flex-col min-h-screen">
       <BrowserRouter>
         <Header />
         <div className="flex-grow">

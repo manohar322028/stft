@@ -2,6 +2,10 @@ import { Footer } from "flowbite-react";
 import { Link } from "react-router-dom";
 import { BsFacebook, BsInstagram, BsTwitterX } from "react-icons/bs";
 import { useState, useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
+AOS.init();
 
 const server_url = import.meta.env.VITE_SERVER_URL;
 
@@ -23,6 +27,12 @@ export default function FooterCom() {
     <Footer
       container
       className=" border-t-2 border-themeBlue bg-[#e2e3e4] bg-opacity-80"
+      data-aos="fade-up"
+      data-aos-duration="1000"
+      data-aos-delay="50"
+      data-aos-easing="ease-in-out"
+      data-aos-once="false"
+      data-aos-anchor-placement="center-bottom"
     >
       <div className="w-full max-w-7xl mx-auto">
         <div className="w-full justify-between sm:flex">

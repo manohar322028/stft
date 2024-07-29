@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import PhotoCard from "../components/PhotoCard";
 import Pagination from "../components/Pagination";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
+AOS.init();
 
 const server_url = import.meta.env.VITE_SERVER_URL;
 
@@ -11,7 +15,7 @@ const Gallery = () => {
 
   useEffect(() => {
     const fetchNews = async () => {
-      await fetch(server_url + "/api/news")
+      await fetch(server_url + "/api/gallery")
         .then((res) => res.json())
         .then((data) => {
           data = data.sort(
@@ -32,8 +36,16 @@ const Gallery = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <div className="container mx-auto py-12 px-4">
-      <h2 className="text-3xl font-bold mb-8 ml-4">All News</h2>
+    <div
+      className="container mx-auto py-12 px-4"
+      data-aos="fade-up"
+      data-aos-delay="50"
+      data-aos-duration="1000"
+      data-aos-easing="ease-in-out"
+      data-aos-once="false"
+      data-aos-anchor-placement="top-center"
+    >
+      <h2 className="text-3xl font-bold mb-8 ml-4">Gallery</h2>
 
       <div className="flex gap-4">
         {currentNews.map((newsItem) => (

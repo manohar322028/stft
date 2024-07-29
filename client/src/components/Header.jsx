@@ -7,6 +7,11 @@ import { MdEmail } from "react-icons/md";
 import { MdPhone } from "react-icons/md";
 import { BsFacebook, BsInstagram, BsTwitterX } from "react-icons/bs";
 
+import AOS from "aos";
+import "aos/dist/aos.css";
+
+AOS.init();
+
 const server_url = import.meta.env.VITE_SERVER_URL;
 
 export default function Header() {

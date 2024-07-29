@@ -4,6 +4,7 @@ const memberSchema = new mongoose.Schema(
   {
     isNew: {
       type: Boolean,
+      default: false,
     },
 
     isApproved: {

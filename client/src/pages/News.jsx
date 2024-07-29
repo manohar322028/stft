@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import NewsCard from "../components/NewsCard";
 import Pagination from "../components/Pagination";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
+AOS.init();
 
 const server_url = import.meta.env.VITE_SERVER_URL;
 const NewsPage = () => {
@@ -31,7 +35,15 @@ const NewsPage = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <div className="container mx-auto py-12 px-4">
+    <div
+      className="container mx-auto py-12 px-4"
+      data-aos="fade-up"
+      data-aos-delay="50"
+      data-aos-duration="1000"
+      data-aos-easing="ease-in-out"
+      data-aos-once="false"
+      data-aos-anchor-placement="top-center"
+    >
       <h2 className="text-3xl font-bold mb-8 ml-4">All News</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4">
