@@ -11,7 +11,14 @@ const formatDate = (dateString) => {
 
 const NoticeHome = ({ notices }) => {
   return (
-    <div className="container mx-auto shadow-sm shadow-gray-400">
+    <div
+      className="container mx-auto shadow-sm shadow-gray-400"
+      data-aos="fade-up"
+      data-aos-duration="1000"
+      data-aos-easing="ease-in-out"
+      data-aos-once="false"
+      data-aos-anchor-placement="top-center"
+    >
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white border-collapse border border-gray-500">
           <thead>

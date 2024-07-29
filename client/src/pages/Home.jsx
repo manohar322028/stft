@@ -97,14 +97,7 @@ export default function Home() {
 
       {/* news */}
 
-      <div
-        className="container mx-auto py-12 px-4"
-        data-aos="fade-up"
-        data-aos-duration="1000"
-        data-aos-easing="ease-in-out"
-        data-aos-once="false"
-        data-aos-anchor-placement="top-center"
-      >
+      <div className="container mx-auto py-12 px-4">
         <h2 className="text-3xl font-bold mb-6 ml-4 merriweather-bold">
           Latest News
         </h2>
@@ -160,15 +153,7 @@ export default function Home() {
       </div>
 
       {/* notices */}
-      <div
-        className="container mx-auto px-4 pb-4"
-        data-aos="fade-up"
-        data-aos-delay="500"
-        data-aos-duration="1000"
-        data-aos-easing="ease-in-out"
-        data-aos-once="false"
-        data-aos-anchor-placement="top-center"
-      >
+      <div className="container mx-auto px-4 pb-4">
         <h2 className="text-3xl font-bold mb-6 ml-4 merriweather-bold">
           Latest Notices
         </h2>
@@ -182,15 +167,7 @@ export default function Home() {
       </div>
 
       {/* downloads */}
-      <div
-        className="container mx-auto px-4 pb-4"
-        data-aos="fade-up"
-        data-aos-delay="500"
-        data-aos-duration="1000"
-        data-aos-easing="ease-in-out"
-        data-aos-once="false"
-        data-aos-anchor-placement="top-center"
-      >
+      <div className="container mx-auto px-4 pb-4">
         <h2 className="text-3xl font-bold mb-6 ml-4 merriweather-bold">
           Downloads
         </h2>

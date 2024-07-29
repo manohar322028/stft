@@ -18,8 +18,8 @@ export default function Hero() {
     dots: false,
     arrows: false,
     infinite: true,
-    speed: 500,
-    fade: true, // Use slide transition for better horizontal alignment
+    speed: 1000,
+    fade: true,
     cssEase: "linear",
     autoplay: true,
     autoplaySpeed: 3000,
@@ -51,8 +51,7 @@ export default function Hero() {
     <div
       className="bg-cover bg-center py-8 shadow-md shadow-gray-700/20"
       style={{
-        backgroundImage:
-          "linear-gradient(to right, transparent, rgba(0, 0, 0, 0.7)),url('hero-bg.png')", // Gradient for larger screens
+        backgroundColor: "#61656925",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
@@ -86,7 +85,7 @@ export default function Hero() {
           </div>
 
           {/* Text Content Section */}
-          <div className="flex flex-col justify-center md:text-left text-center text-white merriweather-regular">
+          <div className="flex flex-col justify-center md:text-left text-center text-themeBlack merriweather-regular">
             <h1 className="text-xl md:text-2xl merriweather-black mb-4">
               Society of Technology Friendly Teachers Nepal
             </h1>

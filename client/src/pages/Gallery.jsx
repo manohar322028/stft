@@ -11,7 +11,7 @@ const server_url = import.meta.env.VITE_SERVER_URL;
 const Gallery = () => {
   const [news, setNews] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 12;
+  const itemsPerPage = 24;
 
   useEffect(() => {
     const fetchNews = async () => {
@@ -27,12 +27,10 @@ const Gallery = () => {
     fetchNews();
   }, []);
 
-  // Get current news items
   const indexOfLastNews = currentPage * itemsPerPage;
   const indexOfFirstNews = indexOfLastNews - itemsPerPage;
   const currentNews = news.slice(indexOfFirstNews, indexOfLastNews);
 
-  // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
@@ -47,7 +45,7 @@ const Gallery = () => {
     >
       <h2 className="text-3xl font-bold mb-8 ml-4">Gallery</h2>
 
-      <div className="flex gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {currentNews.map((newsItem) => (
           <PhotoCard key={newsItem._id} {...newsItem} />
         ))}

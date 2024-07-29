@@ -11,6 +11,10 @@ import ScrollTop from "./components/Scrolltop";
 import Membership from "./pages/Membership";
 import ContactUs from "./pages/ContactUs";
 import Gallery from "./pages/Gallery";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
+AOS.init();
 
 import { useEffect } from "react";
 

@@ -17,7 +17,14 @@ export default function NewsCard({ image, title, content, slug }) {
 
   const imgUrl = image ? "/files/" + image : "newsdefault.png";
   return (
-    <div className="bg-white shadow-md shadow-gray-400 rounded-lg overflow-hidden mx-4 mt-2 mb-8 transition duration-300 transform hover:scale-105 cursor-pointer">
+    <div
+      className="bg-white shadow-md shadow-gray-400 rounded-lg overflow-hidden mx-4 mt-2 mb-8 transition duration-300 transform hover:scale-105 cursor-pointer"
+      data-aos="fade-up"
+      data-aos-duration="1000"
+      data-aos-easing="ease-in-out"
+      data-aos-once="false"
+      data-aos-anchor-placement="top-bottom"
+    >
       {/* Thumbnail */}
       <img src={imgUrl} alt={title} className="w-full h-48 object-cover" />
       {/* Content */}
