@@ -32,3 +32,6 @@ dist-ssr
 
 members
 client/public
+
+
+.adminjs
