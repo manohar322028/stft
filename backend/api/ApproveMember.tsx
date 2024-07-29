@@ -50,7 +50,7 @@ const ApproveMember = (props: ActionProps) => {
       {record?.params.isNew ? (
         <form onSubmit={handleSubmit}>
           <FormGroup>
-            <Label htmlFor="membership_number">Membershippp Number</Label>
+            <Label htmlFor="membership_number">Membership Number</Label>
             <Input
               id="membership_number"
               name="membership_number"
