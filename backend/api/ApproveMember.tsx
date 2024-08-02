@@ -4,7 +4,7 @@ import axios from "axios";
 import { ActionProps } from "adminjs";
 
 const ApproveMember = (props: ActionProps) => {
-  const api_url = "http://localhost:3000";
+  const api_url = "https://admin.stftnepal.org.np";
   const { record, resource } = props;
 
   const handleSubmit = async (event: React.FormEvent) => {
@@ -23,7 +23,7 @@ const ApproveMember = (props: ActionProps) => {
         }
       );
 
-      window.location.href = "http://localhost:3000/admin/resources/Member";
+      window.location.href = `${api_url}/admin/resources/Member`;
     } catch (error) {
       alert("An error occurred: " + error.response?.data?.message);
     }

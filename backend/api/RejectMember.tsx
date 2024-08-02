@@ -12,7 +12,7 @@ import axios from "axios";
 const RejectMember = (props: ActionProps) => {
   const { record, resource } = props;
 
-  const api_url = "http://localhost:3000";
+  const api_url = "http://admin.stftnepal.org.np";
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
