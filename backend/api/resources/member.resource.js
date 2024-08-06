@@ -1,11 +1,11 @@
 import Member from "../models/member.model.js";
 import { componentLoader, Components } from "../component-loader.js";
-import importExportFeature from "@adminjs/import-export";
-
+import { json2csv } from "json-2-csv";
 import { privateLocalProvider } from "../upload-provider.js";
 import uploadFeature from "@adminjs/upload";
 import path from "path";
 import fs from "fs";
+import os from "os";
 
 export default {
   resource: Member,
@@ -34,6 +34,15 @@ export default {
           return {
             record: context.record.toJSON(context.currentAdmin),
           };
+        },
+      },
+      export: {
+        icon: "FileText",
+        label: "Export",
+        actionType: "resource",
+        component: Components.ExportButton,
+        handler: async (request, response, context) => {
+          return {};
         },
       },
     },
@@ -115,7 +124,6 @@ export default {
     },
   },
   features: [
-    importExportFeature({ componentLoader }),
     uploadFeature({
       componentLoader: componentLoader,
       provider: privateLocalProvider,
