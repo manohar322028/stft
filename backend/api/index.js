@@ -64,7 +64,6 @@ const start = async () => {
   app.use(cors());
   app.use(express.static(path.join(__dirname, "../../..")));
   app.use(express.static(path.join(__dirname, "../members")));
-  app.use(express.static(path.join(__dirname, "../uploads")));
 
   const admin = new AdminJS(adminOptions);
 
