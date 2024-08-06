@@ -21,7 +21,7 @@ export default {
             label: "Chairman",
           },
           {
-            value: "senior Vice Chairman",
+            value: "Senior Vice Chairman",
             label: "Senior Vice Chairman",
           },
           {
