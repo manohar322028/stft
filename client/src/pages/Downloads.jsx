@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Pagination from "../components/Pagination";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { useParams } from "react-router-dom";
 
 AOS.init();
 
@@ -13,10 +14,11 @@ export default function Notices() {
   const [notices, setNotices] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
+  const { subject } = useParams();
 
   useEffect(() => {
     const fetchNotices = async () => {
-      await fetch(server_url + "/api/downloads")
+      await fetch(server_url + `/api/downloads/${subject}`)
         .then((res) => res.json())
         .then((data) => {
           data = data.sort(
@@ -26,7 +28,7 @@ export default function Notices() {
         });
     };
     fetchNotices();
-  }, []);
+  }, [subject]);
 
   // Get current news items
   const indexOfLastNotice = currentPage * itemsPerPage;
@@ -46,7 +48,9 @@ export default function Notices() {
         data-aos-once="false"
         data-aos-anchor-placement="top-center"
       >
-        <h2 className="text-3xl font-bold mb-6 ml-4">Downloads</h2>
+        <h2 className="text-3xl font-bold mb-6 ml-4">
+          Resources | Subject: {subject}
+        </h2>
         <Downloads notices={currentNotice} />
       </div>
       <Pagination

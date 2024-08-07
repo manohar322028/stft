@@ -9,7 +9,7 @@ export default {
         themeRed: "#FF0000",
         themeSkin: "#DDCA7D",
         themeBlue: "#03045E",
-        themeGray: "#d3d2d4",
+        themeGray: "#f0f4f8",
         themeBrown: "#100B00ea",
         themeBlack: "#1F2421",
       },

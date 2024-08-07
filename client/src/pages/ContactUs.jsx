@@ -39,37 +39,23 @@ const ContactUs = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 p-6">
+    <div className="min-h-screen flex items-center justify-center bg-white p-6">
       <div className="bg-gray-200 p-8 rounded-lg shadow-lg max-w-md w-full">
         <div className="text-center mb-6">
           <h2 className="text-3xl font-bold text-gray-800 mb-2">Contact Us</h2>
           <p className="text-gray-700 mb-1">
-            <strong>Phone:</strong> (123) 456-7890
+            <strong>Phone:</strong> 9847020826 / 9847651200
           </p>
           <p className="text-gray-700 mb-4">
-            <strong>Email:</strong> contact@company.com
+            <strong>Email:</strong> stftnepal19@gmail.com
           </p>
           <div className="flex justify-center space-x-4 text-gray-700">
             <a
-              href="https://www.facebook.com"
+              href="https://www.facebook.com/groups/468915873599970"
               aria-label="Facebook"
               className="hover:text-blue-600 transition duration-200"
             >
               <FaFacebookF size={24} />
-            </a>
-            <a
-              href="https://www.twitter.com"
-              aria-label="Twitter"
-              className="hover:text-blue-400 transition duration-200"
-            >
-              <BsTwitterX size={24} />
-            </a>
-            <a
-              href="https://www.instagram.com"
-              aria-label="Instagram"
-              className="hover:text-pink-500 transition duration-200"
-            >
-              <FaInstagram size={24} />
             </a>
           </div>
         </div>

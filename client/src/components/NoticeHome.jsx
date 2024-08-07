@@ -14,22 +14,23 @@ const NoticeHome = ({ notices }) => {
     <div
       className="container mx-auto shadow-sm shadow-gray-400"
       data-aos="fade-up"
+      data-aos-delay="50"
       data-aos-duration="1000"
       data-aos-easing="ease-in-out"
       data-aos-once="false"
-      data-aos-anchor-placement="top-center"
+      data-aos-anchor-placement="top-bottom"
     >
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white border-collapse border border-gray-500">
           <thead>
             <tr>
-              <th className="border border-gray-500 px-6 py-2 bg-gray-200 text-left mukta-semibold text-sm uppercase tracking-wider w-3/5">
+              <th className="border border-gray-500 px-6 py-2 bg-[#f0f4f8] text-left mukta-semibold text-sm uppercase tracking-wider w-3/5">
                 Title
               </th>
-              <th className="border border-gray-500 px-4 py-2 bg-gray-200 text-left mukta-semibold text-sm uppercase tracking-wider w-1/5">
+              <th className="border border-gray-500 px-4 py-2 bg-[#f0f4f8] text-left mukta-semibold text-sm uppercase tracking-wider w-1/5">
                 Date
               </th>
-              <th className="border border-gray-500 px-4 py-2 bg-gray-200 text-left mukta-semibold text-sm uppercase tracking-wider w-1/5">
+              <th className="border border-gray-500 px-4 py-2 bg-[#f0f4f8] text-left mukta-semibold text-sm uppercase tracking-wider w-1/5">
                 Download
               </th>
             </tr>
@@ -38,7 +39,7 @@ const NoticeHome = ({ notices }) => {
             {notices.map((notice, index) => (
               <tr
                 key={index}
-                className={index % 2 === 1 ? "bg-gray-200" : "bg-gray-100"}
+                className={index % 2 === 1 ? "bg-gray-100" : "bg-white"}
               >
                 <td className="border border-gray-500 px-6 py-2 text-base">
                   <span className="mukta-regular">{notice.title}</span>

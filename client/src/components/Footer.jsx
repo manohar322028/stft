@@ -26,13 +26,13 @@ export default function FooterCom() {
   return (
     <Footer
       container
-      className=" border-t-2 border-themeBlue bg-[#e2e3e4] bg-opacity-80"
+      className=" border-t-2 border-themeBlue bg-[#f0f4f8] bg-opacity-80"
       data-aos="fade-up"
       data-aos-duration="1000"
       data-aos-delay="50"
       data-aos-easing="ease-in-out"
       data-aos-once="false"
-      data-aos-anchor-placement="center-bottom"
+      data-aos-anchor-placement="top-bottom"
     >
       <div className="w-full max-w-7xl mx-auto">
         <div className="w-full justify-between sm:flex">

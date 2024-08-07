@@ -49,9 +49,9 @@ export default function Hero() {
 
   return (
     <div
-      className="bg-cover bg-center py-8 shadow-md shadow-gray-700/20"
+      className="bg-cover bg-center py-8 shadow-md shadow-gray-300/20"
       style={{
-        backgroundColor: "#61656925",
+        backgroundColor: "#f0f4f8", // Light blue-gray background
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
@@ -64,7 +64,6 @@ export default function Hero() {
       data-aos-anchor-placement="top-center"
     >
       <div className="max-w-7xl mx-auto px-4">
-        {/* Responsive layout for tablets and larger screens */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Slider Section */}
           <div className="w-full h-full overflow-hidden">
@@ -85,35 +84,36 @@ export default function Hero() {
           </div>
 
           {/* Text Content Section */}
-          <div className="flex flex-col justify-center md:text-left text-center text-themeBlack merriweather-regular">
-            <h1 className="text-xl md:text-2xl merriweather-black mb-4">
+          <div className="flex flex-col justify-center md:text-left text-center text-gray-700 merriweather-regular">
+            <h1 className="text-xl md:text-2xl merriweather-black mb-4 text-themeBlue">
               Society of Technology Friendly Teachers Nepal
             </h1>
-            <h2 className="text-lg sm:text-xl font-bold merriweather-regular mb-4">
+            <h2 className="text-lg sm:text-xl font-bold merriweather-regular mb-4 text-gray-700">
               (STFT Nepal)
             </h2>
-            <p className="text-base sm:text-lg merriweather-light-italic mb-4">
+            <p className="text-base sm:text-lg merriweather-light-italic mb-4 text-gray-600">
               A great platform for technology friendly teachers
             </p>
-            <p className="text-base mb-8 merriweather-regular">
-              <span className="merriweather-black">Join our platform</span> to
-              collaborate with like-minded educators, access cutting-edge
+            <p className="text-base mb-8 merriweather-regular text-gray-600">
+              <span className="merriweather-black text-themeBlue">
+                Join our platform
+              </span>{" "}
+              to collaborate with like-minded educators, access cutting-edge
               resources, and transform your teaching practice into a dynamic,
               future-ready experience. Together, we can shape the future of
               education through innovation and shared expertise.
             </p>
-            {/* Buttons positioned at bottom center, stacked vertically */}
           </div>
         </div>
         <div className="flex flex-col items-center md:flex-row md:justify-end mt-8">
           <button
-            className="px-6 py-2 text-gray-100 bg-themeBlue rounded hover:bg-blue-700 mt-2 md:w-1/5 "
+            className="px-6 py-2 text-white bg-themeBlue rounded hover:bg-blue-700 mt-2 md:w-1/5 transition duration-300"
             onClick={changeRoute("/contactus")}
           >
             Contact Us
           </button>
           <button
-            className="px-6 py-2 text-gray-100 bg-themeBlue rounded hover:bg-blue-700 md:w-1/5 mt-2 md:ml-4"
+            className="px-6 py-2 text-white bg-themeBlue rounded hover:bg-blue-700 md:w-1/5 mt-2 md:ml-4 transition duration-300"
             onClick={changeRoute("/membership")}
           >
             Join Community

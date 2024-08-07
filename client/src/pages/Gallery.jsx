@@ -41,7 +41,7 @@ const Gallery = () => {
       data-aos-duration="1000"
       data-aos-easing="ease-in-out"
       data-aos-once="false"
-      data-aos-anchor-placement="top-center"
+      data-aos-anchor-placement="top-bottom"
     >
       <h2 className="text-3xl font-bold mb-8 ml-4">Gallery</h2>
 

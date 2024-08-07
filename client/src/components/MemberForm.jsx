@@ -2,6 +2,9 @@ import React, { useState, useEffect, useRef } from "react";
 
 const server_url = import.meta.env.VITE_SERVER_URL;
 
+import nepalinumbers from "@danfebooks/nepalinumbers";
+import nepalify from "nepalify";
+
 export default function MemberForm({ isNew }) {
   const [formData, setFormData] = useState({
     isNew: isNew,
@@ -48,7 +51,25 @@ export default function MemberForm({ isNew }) {
 
   const handleChange = (e) => {
     const { id, value } = e.target;
-    setFormData({ ...formData, [id]: value });
+    let newValue = value;
+
+    const nepaliFields = [
+      "first_name",
+      "last_name",
+      "district",
+      "municipality",
+      "ward",
+      "school_name",
+      "school_address",
+      "appointment_type",
+      "phone_number",
+    ];
+
+    if (nepaliFields.includes(id)) {
+      newValue = nepalify.format(value);
+    }
+
+    setFormData({ ...formData, [id]: newValue });
   };
 
   const handleFileChange = (e) => {
@@ -116,7 +137,11 @@ export default function MemberForm({ isNew }) {
         onChange: (date) => {
           setFormData({
             ...formData,
-            school_appointment_date: date.bs,
+            school_appointment_date: `${nepalinumbers.numbers(
+              date.bs.split("-")[0]
+            )} ${nepalinumbers.month(
+              date.bs.split("-")[1]
+            )} ${nepalinumbers.numbers(date.bs.split("-")[2])}`,
           });
         },
       });
@@ -131,7 +156,11 @@ export default function MemberForm({ isNew }) {
         onChange: (date) => {
           setFormData({
             ...formData,
-            membership_date: date.bs,
+            membership_date: `${nepalinumbers.numbers(
+              date.bs.split("-")[0]
+            )} ${nepalinumbers.month(
+              date.bs.split("-")[1]
+            )} ${nepalinumbers.numbers(date.bs.split("-")[2])}`,
           });
         },
       });
@@ -160,6 +189,7 @@ export default function MemberForm({ isNew }) {
             type="text"
             value={formData.first_name}
             onChange={handleChange}
+            onInput={(e) => (e.target.value = nepalify.format(e.target.value))}
             required
           />
         </div>
@@ -176,6 +206,7 @@ export default function MemberForm({ isNew }) {
             type="text"
             value={formData.last_name}
             onChange={handleChange}
+            onInput={(e) => (e.target.value = nepalify.format(e.target.value))}
             required
           />
         </div>
@@ -193,6 +224,7 @@ export default function MemberForm({ isNew }) {
             type="text"
             value={formData.district}
             onChange={handleChange}
+            onInput={(e) => (e.target.value = nepalify.format(e.target.value))}
             required
           />
           <label
@@ -207,6 +239,7 @@ export default function MemberForm({ isNew }) {
             type="text"
             value={formData.municipality}
             onChange={handleChange}
+            onInput={(e) => (e.target.value = nepalify.format(e.target.value))}
             required
           />
 
@@ -219,6 +252,7 @@ export default function MemberForm({ isNew }) {
             type="text"
             value={formData.ward}
             onChange={handleChange}
+            onInput={(e) => (e.target.value = nepalify.format(e.target.value))}
             required
           />
         </div>
@@ -235,6 +269,7 @@ export default function MemberForm({ isNew }) {
             type="text"
             value={formData.school_name}
             onChange={handleChange}
+            onInput={(e) => (e.target.value = nepalify.format(e.target.value))}
             required
           />
         </div>
@@ -251,6 +286,7 @@ export default function MemberForm({ isNew }) {
             type="text"
             value={formData.school_address}
             onChange={handleChange}
+            onInput={(e) => (e.target.value = nepalify.format(e.target.value))}
             required
           />
         </div>
@@ -284,6 +320,7 @@ export default function MemberForm({ isNew }) {
             type="text"
             value={formData.appointment_type}
             onChange={handleChange}
+            onInput={(e) => (e.target.value = nepalify.format(e.target.value))}
             required
           />
         </div>
@@ -300,6 +337,7 @@ export default function MemberForm({ isNew }) {
             type="text"
             value={formData.phone_number}
             onChange={handleChange}
+            onInput={(e) => (e.target.value = nepalify.format(e.target.value))}
             required
           />
         </div>
