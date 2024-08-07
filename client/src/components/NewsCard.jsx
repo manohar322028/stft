@@ -20,6 +20,7 @@ export default function NewsCard({ image, title, content, slug }) {
     <div
       className="bg-white shadow-md shadow-gray-400 rounded-lg overflow-hidden mx-4 mt-2 mb-8 transition duration-300 transform hover:scale-105 cursor-pointer"
       data-aos="fade-up"
+      data-aos-delay="50"
       data-aos-duration="1000"
       data-aos-easing="ease-in-out"
       data-aos-once="false"

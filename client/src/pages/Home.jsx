@@ -24,6 +24,7 @@ export default function Home() {
   const [notices, setNotices] = useState([]);
   const [downloads, setDownloads] = useState([]);
   const [slideIndex, setSlideIndex] = useState(0);
+  const [slidesToShow, setSlidesToShow] = useState(0);
   let sliderRef = useRef(null);
   const nextSlide = () => {
     sliderRef.slickNext();
@@ -47,7 +48,12 @@ export default function Home() {
         });
     };
     fetchNews();
-  }, []);
+    if (news.length >= 3) {
+      setSlidesToShow(3);
+    } else {
+      setSlidesToShow(news.length);
+    }
+  }, [news]);
 
   useEffect(() => {
     const fetchNotices = async () => {
@@ -81,7 +87,7 @@ export default function Home() {
     dots: false,
     arrows: false,
     infinite: true,
-    slidesToShow: 3,
+    slidesToShow: slidesToShow,
     slidesToScroll: 1,
     autoplay: true,
     speed: 2000,
@@ -145,7 +151,7 @@ export default function Home() {
           </div>
         </div>
         <p
-          className="text-right mr-4 text-lg mt-10 underline cursor-pointer merriweather-regular"
+          className="text-right mr-4 text-lg mt-10 underline cursor-pointer merriweather-regular text-indigo-700"
           onClick={changeRoute("/news")}
         >
           Click Here for More News
@@ -159,7 +165,7 @@ export default function Home() {
         </h2>
         <NoticeHome notices={notices.slice(0, 10)} />
         <p
-          className="text-right mr-4 text-lg mt-10 underline cursor-pointer merriweather-regular"
+          className="text-right mr-4 text-lg mt-10 underline cursor-pointer merriweather-regular  text-indigo-700"
           onClick={changeRoute("/notices")}
         >
           Click Here for More Notices
@@ -169,14 +175,14 @@ export default function Home() {
       {/* downloads */}
       <div className="container mx-auto px-4 pb-4">
         <h2 className="text-3xl font-bold mb-6 ml-4 merriweather-bold">
-          Downloads
+          Latest Resources
         </h2>
         <Downloads notices={downloads.slice(0, 10)} />
         <p
-          className="text-right mr-4 text-lg mt-10 underline cursor-pointer merriweather-regular"
-          onClick={changeRoute("/downloads")}
+          className="text-right mr-4 text-lg mt-10 underline cursor-pointer merriweather-regular  text-indigo-700"
+          onClick={changeRoute("/resources/Others")}
         >
-          Click Here for More Downloads
+          Click Here for More Resources
         </p>
       </div>
     </div>

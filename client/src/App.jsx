@@ -42,7 +42,7 @@ export default function App() {
             <Route path="/about" element={<About />} />
             <Route path="/notices" element={<Notices />} />
             <Route path="/news" element={<News />} />
-            <Route path="/downloads" element={<Downloads />} />
+            <Route path="/resources/:subject" element={<Downloads />} />
             <Route path="/membership" element={<Membership />} />
             <Route path="/news/:postSlug" element={<NewsPage />} />
             <Route path="/provinces/:province" element={<Province />} />
