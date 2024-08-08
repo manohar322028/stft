@@ -9,7 +9,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { useState, useEffect, useRef } from "react";
 import { FaChevronLeft, FaChevronRight, FaCircle } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-
+import { FaExternalLinkAlt } from "react-icons/fa";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -184,6 +184,46 @@ export default function Home() {
         >
           Click Here for More Resources
         </p>
+      </div>
+
+      {/* Useful links for teachers */}
+      <div className="container mx-auto px-4 py-12">
+        <h2 className="text-3xl font-bold mb-6 ml-4 merriweather-bold">
+          Useful Links for Teachers
+        </h2>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {[
+            { name: "पाठ्यक्रम विकास केन्द्र", url: "https://moecdc.gov.np/" },
+            {
+              name: "शिक्षा तथा मानव स्रोत विकास केन्द्र",
+              url: "https://cehrd.gov.np/",
+            },
+            { name: "शिक्षक सेवा आयोग", url: "https://tsc.gov.np/" },
+            { name: "राष्ट्रिय परीक्षा बोर्ड", url: "https://www.neb.gov.np/" },
+            { name: "शिक्षा मन्त्रालय", url: "https://moest.gov.np/" },
+            { name: "ई-पुस्तकालय", url: "https://pustakalaya.org/ne/" },
+            { name: "राष्ट्रिय किताबखाना (शिक्षक)", url: "#" },
+            { name: "कर्मचारी सञ्चय कोष", url: "https://epf.org.np/" },
+            { name: "नागरिक लगानी कोष", url: "https://www.nlk.org.np/home" },
+            {
+              name: "STFT Nepal Youtube Channel",
+              url: "https://www.youtube.com/@ghanashyamadhikari",
+            },
+          ].map((link, index) => (
+            <a
+              key={index}
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out"
+            >
+              <span className="flex-grow merriweather-regular">
+                {link.name}
+              </span>
+              <FaExternalLinkAlt className="text-indigo-600 ml-2" />
+            </a>
+          ))}
+        </div>
       </div>
     </div>
   );
