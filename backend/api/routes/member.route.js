@@ -1,5 +1,9 @@
 import express from "express";
-import { postMember, updateMember } from "../controllers/member.controller.js";
+import {
+  postMember,
+  updateMember,
+  sendEmail,
+} from "../controllers/member.controller.js";
 
 import { upload } from "../utils/uploader.js";
 
@@ -18,5 +22,7 @@ router.put(
   upload.fields([{ name: "membership_certificate", maxCount: 1 }]),
   updateMember
 );
+
+router.post("/send-email", sendEmail);
 
 export default router;

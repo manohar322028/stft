@@ -2,6 +2,7 @@ import { errorHandler } from "../utils/error.js";
 import Member from "../models/member.model.js";
 import path from "path";
 import fs from "fs";
+import send from "../utils/mailer.js";
 
 const checkAndSaveFile = (file, folder, originalFilename) => {
   return new Promise((resolve, reject) => {
@@ -188,5 +189,16 @@ export const updateMember = async (req, res, next) => {
   } catch (err) {
     console.log(err);
     return next(errorHandler(500, "Error updating member"));
+  }
+};
+
+export const sendEmail = async (req, res) => {
+  const { to, subject, html, attachmentPath } = req.body;
+
+  try {
+    await send({ to, subject, html, attachmentPath });
+    res.status(200).send("Email sent successfully");
+  } catch (error) {
+    res.status(500).send("Error while sending email");
   }
 };

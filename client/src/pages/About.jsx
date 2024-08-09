@@ -7,7 +7,6 @@ export default function About() {
   const [about, setAbout] = useState(null);
   const [team, setTeam] = useState(null);
   const [isTextExpanded, setIsTextExpanded] = useState(false);
-  const [isTextOverflow, setIsTextOverflow] = useState(false);
 
   useEffect(() => {
     const fetchAbout = async () => {
@@ -61,16 +60,6 @@ export default function About() {
     return sorted;
   };
 
-  useEffect(() => {
-    if (about) {
-      const textElement = document.getElementById("about-text");
-      const imageElement = document.getElementById("about-image");
-      const isOverflowing =
-        textElement.scrollHeight > imageElement.clientHeight;
-      setIsTextOverflow(isOverflowing);
-    }
-  }, [about]);
-
   const handleReadMore = () => {
     setIsTextExpanded(true);
   };
@@ -91,22 +80,20 @@ export default function About() {
           </section>
           <section id="about-text" className="text-lg mukta-light pb-4">
             {about &&
-              (isTextExpanded ? about.content : about.content.slice(0, 600))}
-            {about && !isTextExpanded && isTextOverflow && (
-              <span>
-                ...{" "}
-                <button onClick={handleReadMore} className="text-blue-500">
-                  Read More
-                </button>
-              </span>
+              (about.content.length > 600
+                ? isTextExpanded
+                  ? about.content
+                  : about.content.slice(0, 600) + "..."
+                : about.content)}
+            {about && about.content.length > 600 && !isTextExpanded && (
+              <button onClick={handleReadMore} className="text-blue-500">
+                Read More
+              </button>
             )}
             {about && isTextExpanded && (
-              <span>
-                {" "}
-                <button onClick={handleReadLess} className="text-blue-500">
-                  Read Less
-                </button>
-              </span>
+              <button onClick={handleReadLess} className="text-blue-500">
+                Read Less
+              </button>
             )}
           </section>
         </div>
@@ -122,6 +109,9 @@ export default function About() {
       </div>
 
       <div className="text-center text-2xl mukta-bold">हाम्रो समाज</div>
+      <div className="text-center text-lg mukta-light p-4">
+        (केन्द्रीय सचिवालय समिति)
+      </div>
 
       <div className="container flex flex-wrap justify-center items-center mx-auto mb-10 p-10">
         {team &&

@@ -23,6 +23,17 @@ const ApproveMember = (props: ActionProps) => {
         }
       );
 
+      const certificate = res.data.membership_certificate;
+      const certificateUrl = `${api_url}/uploads/${certificate}`;
+
+      const emailData = {
+        to: record?.params.email,
+        subject: "Membership Approved",
+        text: `Congratulations! Your membership has been approved. You can download your certificate from the following link: ${certificateUrl}`,
+      };
+
+      await axios.post(`${api_url}/api/members/send-email`, emailData);
+
       window.location.href = "http://localhost:3000/admin/resources/Member";
     } catch (error) {
       alert("An error occurred: " + error.response?.data?.message);
@@ -39,6 +50,17 @@ const ApproveMember = (props: ActionProps) => {
         formData
       );
 
+      const certificate = res.data.record.params.membership_certificate;
+      const certificateUrl = `${api_url}/uploads/${certificate}`;
+
+      const emailData = {
+        to: record?.params.email,
+        subject: "Membership Approved",
+        text: `Congratulations! Your membership has been approved. You can download your certificate from the following link: ${certificateUrl}`,
+      };
+
+      await axios.post(`${api_url}/api/members/send-email`, emailData);
+
       window.location.href = res.data.redirectUrl;
     } catch (error) {
       alert("An error occurred: " + error.message);
@@ -50,7 +72,7 @@ const ApproveMember = (props: ActionProps) => {
       {record?.params.isNew ? (
         <form onSubmit={handleSubmit}>
           <FormGroup>
-            <Label htmlFor="membership_number">Membershippp Number</Label>
+            <Label htmlFor="membership_number">Membership Number</Label>
             <Input
               id="membership_number"
               name="membership_number"

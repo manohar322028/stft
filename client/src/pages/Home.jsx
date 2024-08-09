@@ -216,6 +216,12 @@ export default function Home() {
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out"
+              data-aos="fade-up"
+              data-aos-delay="50"
+              data-aos-duration="1000"
+              data-aos-easing="ease-in-out"
+              data-aos-once="false"
+              data-aos-anchor-placement="top-bottom"
             >
               <span className="flex-grow merriweather-regular">
                 {link.name}
